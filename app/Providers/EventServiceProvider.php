@@ -1,6 +1,6 @@
 <?php
 
-namespace goldenvision\Providers;
+namespace GoldenVision\Providers;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'goldenvision\Events\Event' => [
-            'goldenvision\Listeners\EventListener',
+        'GoldenVision\Events\Event' => [
+            'GoldenVision\Listeners\EventListener',
         ],
     ];
 

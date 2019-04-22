@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => goldenvision\User::class,
+            'model' => GoldenVision\User::class,
         ],
 
         // 'users' => [

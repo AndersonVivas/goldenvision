@@ -146,6 +146,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        
+        Tavo\EcLaravelValidator\EcValidatorServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -154,11 +156,11 @@ return [
         /*
          * Application Service Providers...
          */
-        goldenvision\Providers\AppServiceProvider::class,
-        goldenvision\Providers\AuthServiceProvider::class,
-        // goldenvision\Providers\BroadcastServiceProvider::class,
-        goldenvision\Providers\EventServiceProvider::class,
-        goldenvision\Providers\RouteServiceProvider::class,
+        GoldenVision\Providers\AppServiceProvider::class,
+        GoldenVision\Providers\AuthServiceProvider::class,
+        // GoldenVision\Providers\BroadcastServiceProvider::class,
+        GoldenVision\Providers\EventServiceProvider::class,
+        GoldenVision\Providers\RouteServiceProvider::class,
 
     ],
 

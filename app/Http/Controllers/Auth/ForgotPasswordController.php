@@ -1,8 +1,8 @@
 <?php
 
-namespace goldenvision\Http\Controllers\Auth;
+namespace GoldenVision\Http\Controllers\Auth;
 
-use goldenvision\Http\Controllers\Controller;
+use GoldenVision\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class ForgotPasswordController extends Controller

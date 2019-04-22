@@ -1,6 +1,6 @@
 <?php
 
-namespace goldenvision\Http\Middleware;
+namespace GoldenVision\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;

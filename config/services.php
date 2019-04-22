@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => goldenvision\User::class,
+        'model' => GoldenVision\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

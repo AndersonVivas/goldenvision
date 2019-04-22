@@ -1,9 +1,9 @@
 <?php
 
-namespace goldenvision\Http\Controllers\Auth;
+namespace GoldenVision\Http\Controllers\Auth;
 
-use goldenvision\User;
-use goldenvision\Http\Controllers\Controller;
+use GoldenVision\User;
+use GoldenVision\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -59,7 +59,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \goldenvision\User
+     * @return \GoldenVision\User
      */
     protected function create(array $data)
     {

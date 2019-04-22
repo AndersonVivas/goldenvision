@@ -1,6 +1,6 @@
 <?php
 
-namespace goldenvision\Providers;
+namespace GoldenVision\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'goldenvision\Model' => 'goldenvision\Policies\ModelPolicy',
+        'GoldenVision\Model' => 'GoldenVision\Policies\ModelPolicy',
     ];
 
     /**

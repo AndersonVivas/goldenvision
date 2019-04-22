@@ -1,6 +1,6 @@
 <?php
 
-namespace goldenvision\Http\Middleware;
+namespace GoldenVision\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Fideloper\Proxy\TrustProxies as Middleware;

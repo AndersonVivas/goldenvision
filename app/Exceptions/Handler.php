@@ -1,6 +1,6 @@
 <?php
 
-namespace goldenvision\Exceptions;
+namespace GoldenVision\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;

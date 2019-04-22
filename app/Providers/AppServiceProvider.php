@@ -1,6 +1,6 @@
 <?php
 
-namespace goldenvision\Providers;
+namespace GoldenVision\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

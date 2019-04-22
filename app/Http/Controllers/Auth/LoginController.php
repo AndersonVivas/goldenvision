@@ -1,13 +1,17 @@
 <?php
 
-namespace goldenvision\Http\Controllers\Auth;
+namespace GoldenVision\Http\Controllers\Auth;
 
-use goldenvision\Http\Controllers\Controller;
+use GoldenVision\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    /*
+
+  
+  /*
     |--------------------------------------------------------------------------
     | Login Controller
     |--------------------------------------------------------------------------

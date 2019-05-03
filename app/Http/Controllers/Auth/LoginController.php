@@ -6,21 +6,10 @@ use GoldenVision\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use GoldenVision\Gv_sucursal;
 
 class LoginController extends Controller
-{
-
-  
-  /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
+{  
 
     use AuthenticatesUsers;
 
@@ -29,7 +18,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+ 
 
     /**
      * Create a new controller instance.
@@ -39,5 +28,16 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+    public function redirectPath()
+    {
+      if(auth()->user()->ro_id==1){
+        return '/administrador';
+      }else if(auth()->user()->ro_id==2){
+        return '/opt';
+      }else if(auth()->user()->ro_id==3){
+        return '/secretaria';
+      }
+        
     }
 }

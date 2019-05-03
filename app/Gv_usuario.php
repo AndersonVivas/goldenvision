@@ -24,4 +24,10 @@ class Gv_usuario extends Model
         }
         return false;
     }
+    public function consultas()
+    {
+        return $this->hasMany('GoldenVision\Gv_consulta');
+    }
+    
+    
 }

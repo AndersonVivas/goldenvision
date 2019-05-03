@@ -112,7 +112,7 @@ return [
     'uploaded'             => 'El campo :attribute no se pudo subir.',
     'url'                  => 'El formato del campo :attribute es inválido.',
     'uuid'                 => 'El campo :attribute debe ser un UUID válido.',
-    'ecuador'              => 'El campo :attribute no es valido.',
+    'ecuador'              => 'La cédula ingresada es incorrecta.',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -126,6 +126,15 @@ return [
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
+        ],
+        'su_ciudad'=> [
+            'unique' => 'Esta localidad ya ha sido registrada'
+        ],
+        'us_cedula' => [
+            'unique' => 'Este usuario ya fue registrado'
+        ],
+        'pa_cedula' => [
+            'unique' => 'Este paciente ya fue registrado'
         ],
     ],
     /*

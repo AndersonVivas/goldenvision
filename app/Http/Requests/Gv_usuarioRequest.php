@@ -25,7 +25,7 @@ class Gv_usuarioRequest extends FormRequest
     {
         return [  
             'tipo'=> 'required',        
-            'cedula' => 'required|ecuador:ci',
+            'us_cedula' => 'required|unique:gv_usuarios|ecuador:ci',
             'nombres' => 'required',
             'apellidos'=> 'required',
             'email'=> 'nullable|email', 

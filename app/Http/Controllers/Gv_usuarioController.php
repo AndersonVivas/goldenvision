@@ -8,11 +8,7 @@ use GoldenVision\Http\Requests\Gv_usuarioRequest;
 use GoldenVision\Gv_usuario;
 
 class Gv_usuarioController extends Controller
-{
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+{   
     
     /**
      * Display a listing of the resource.
@@ -21,7 +17,7 @@ class Gv_usuarioController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -44,17 +40,13 @@ class Gv_usuarioController extends Controller
     public function store(Gv_usuarioRequest $request)
     {
        $usuario = new Gv_usuario();
-        $usuario->us_cedula=$request->cedula;
+        $usuario->us_cedula=$request->us_cedula;
         $usuario->us_apellidos=$request->apellidos;
         $usuario->us_nombres=$request->nombres;
         $usuario->us_correo=$request->email;
         $usuario->us_telefono=$request->celular;
-        $usuario->us_password=bcrypt($request->cedula); 
-        if($request->estado=='on'){
-            $usuario->us_estado=true;  
-        } else{
-            $usuario->us_estado=false;
-        }       
+        $usuario->us_password=bcrypt($request->us_cedula); 
+        $usuario->us_estado=true;          
         $usuario->ro_id=$request->tipo;
         $usuario->save();        
         return back()->with('status','Usuario ingresado');

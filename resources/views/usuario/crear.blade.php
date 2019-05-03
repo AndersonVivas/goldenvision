@@ -1,73 +1,110 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid"  style="height:100%">    
-<div class="row row justify-content-center" style="height:100%">
-<div class=" col-auto col-sm-12 col-lg-9 align-self-center">
-<div class="card">
- <h5 class="card-header">Usuario Nuevo</h5>
-    <div class="card-body"> 
-            @if (count($errors) > 0)
-            <div class="alert alert-danger" role="alert">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+
+<div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Registro de Usuario</div>
+                <div class="card-body">
+                    <form  action="usuario"  method="post" autocomplete="off">                        
+                        @csrf
+                    <div class="form-group row">
+                        <label for="rol_id" class="col-md-4 col-form-label text-md-right">Tipo de usuario</label>      
+                        <div class="col-md-6">                                                         
+                            <select id="tipo" name="tipo" class="custom-select" data-live-search="true">
+                                <option value="">--Seleccione--</option>
+                                @foreach ($roles as $rol)
+                                 <option  data-tokens= {{ $rol->ro_rol }} value={{ $rol->ro_id }}>{{ $rol->ro_rol }}</option>
+                                @endforeach                   
+                            </select>
+                            @if ($errors->has('tipo'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('tipo') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                     </div>
+                     <div class="form-group row">
+                            <label for="us_cedula" class="col-md-4 col-form-label text-md-right">Cédula:</label>
+
+                            <div class="col-md-6">
+                                <input id="us_cedula" type="text" class="form-control{{ $errors->has('us_cedula') ? ' is-invalid' : '' }}" name="us_cedula" value="{{ old('us_cedula') }}" maxlength="10" required autofocus>
+
+                                @if ($errors->has('us_cedula'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('us_cedula') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Nombres:</label>
+
+                            <div class="col-md-6">
+                                <input id="nombres" onkeyup="mayus(this);" type="text" class="form-control{{ $errors->has('nombres') ? ' is-invalid' : '' }}" name="nombres" value="{{ old('nombres') }}" required autofocus>
+
+                                @if ($errors->has('nombres'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('nombres') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="apellidos" class="col-md-4 col-form-label text-md-right">Apellidos:</label>
+
+                            <div class="col-md-6">
+                                <input id="apellidos" onkeyup="mayus(this);" type="text" class="form-control{{ $errors->has('apellidos') ? ' is-invalid' : '' }}" name="apellidos" value="{{ old('apellidos') }}" required>
+
+                                @if ($errors->has('apellidos'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('apellidos') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">Correo Electrónico:</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="celular" class="col-md-4 col-form-label text-md-right">Teléfono/Celular:</label>
+
+                            <div class="col-md-6">
+                                <input id="celular" type="text" class="form-control{{ $errors->has('celular') ? ' is-invalid' : '' }}" name="celular" value="{{ old('celular') }}" required>
+                            </div>
+                            @if ($errors->has('celular'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('celular') }}</strong>
+                            </span>
+                        @endif
+                        </div>                       
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Guardar
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            @endif
- <form   action="usuario" method="post" style="margin-left:auto; margin-right:auto" autocomplete="off">
-    @csrf   
-    <div class="form-row">                       
-        <div class="form-group col-auto col-sm-12 col-lg-3" required>
-            <label for="my-input">Tipo de usuario</label>                                       
-            <select id="rol_id" name="tipo" class="custom-select form-control-sm">
-                <option value="">--Seleccione--</option>
-                @foreach ($roles as $rol)
-                <option value={{ $rol->ro_id }}>{{ $rol->ro_rol }}</option>
-                @endforeach                   
-            </select>
-        </div>
-    </div> 
-    <div class="form-row">
-        <div class="form-group col-auto col-sm-12 col-lg-4" >
-            <label for="my-input">Cedula</label>
-            <input id="ced" class="form-control form-control-sm"    type="text" name="cedula" placeholder="Cedula" value="{{ old('cedula') }}" >
-            <div id="salida"></div>                    
-        </div>
-        <div class="form-group col-auto col-sm-12 col-lg-4" >
-                <label for="my-input">Nombres</label>
-                <input id="my-input" onkeyup="mayus(this);" class="form-control form-control-sm" type="text" name="nombres" placeholder="Ingrese el nombre completo" value="{{ old('nombres') }}" >
-        </div>
-        <div class="form-group col-sm-12 col-lg-4" >
-                <label for="my-input">Apellidos</label>
-                <input id="my-input" onkeyup="mayus(this);" class="form-control form-control-sm" type="text" name="apellidos" placeholder="Ingrese apellidos completos" value="{{ old('apellidos') }}">
         </div>
     </div>
-    <div class="form-row">
-        <div class="form-group col-auto col-sm-12 col-lg-6">
-            <label for="my-input">Email</label>
-            <input id="my-input" class="form-control form-control-sm" type="text" name="email" placeholder="example@correo.com" value="{{ old('email') }}">
-        </div>
-        <div class="form-group col-auto col-sm-12 col-lg-4">
-            <label for="my-input">Celular/Telefono</label>
-            <input id="celular"name="celular"class="form-control form-control-sm" type="text" placeholder="0999999999/062540000" maxlength="10" minlength="6" value="{{ old('celular') }}">
-        </div>
-    </div> 
-    <div class="form-row">
-            <div class="form-group col-auto col-sm-12 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="estado" value="1">
-                    <label class="form-check-label" for="exampleCheck1">Activo</label>
-            </div>        
-    </div>               
-    <div class="btn-group" role="group" aria-label="Button group">
-        <button class="btn btn-primary" type="submit" onclick="validar();">Guardar</button>
-    </div>
-    </form>
-    </div>
-</div>
-</div>
-</div>
 </div>
 @endsection
 <script type="text/javascript" src="js/validaciones.js"></script>

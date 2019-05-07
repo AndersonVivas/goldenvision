@@ -11,6 +11,6 @@ class Gv_sintoma extends Model
     public $timestamps = false;
     public function consultas()
     {
-        return $this->belongsToMany('GoldenVision\Gv_consulta','Gv_consultas_sintomas','si_id','co_id')->withPivot('cos_otros');
+        return $this->belongsToMany('GoldenVision\Gv_consulta','gv_consultas_sintomas','si_id','co_id')->withPivot('cos_otros');
     }
 }

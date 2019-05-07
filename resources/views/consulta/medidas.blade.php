@@ -102,7 +102,7 @@
         </div>
         <div class="col-md-4">
             <div class="row">
-               <button type="button" class="btn btn-outline-primary btn-rounded waves-effect" style="width:250px">OBSERVACION CORPORAL</button> 
+               <button type="button" data-toggle="modal" data-target="#ccorporal" class="btn btn-outline-primary btn-rounded waves-effect" style="width:250px">OBSERVACION CORPORAL</button> 
             </div>
             <div class="row">
               <button type="button" class="btn btn-outline-primary btn-rounded waves-effect" style="width:250px">KERATROMETRIA</button>
@@ -360,4 +360,52 @@
  </form>
 </div>
 
+<!--Caracteristicas Corporale -->
+<div class="modal fade" id="ccorporal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+            @csrf
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Características Corporales</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form >
+         @csrf
+         <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
+        <div class="modal-body">                       
+              <div class="form-group">
+                    <div  role="alert" id="mensjeCcorporal" >
+                            <strong id="succesMensaje"></strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                            </button>  
+                    </div>       
+                <select id="_ccorporales"name="ccorporales" class="custom-select form-control-sm " name="su_ciudad"  data-live-search="true" required>
+                    <option value="">--Seleccione una característica--</option>                                        
+                    @foreach ($ccorporales as $ccorporal)
+                    <option   value={{ $ccorporal->cc_id }}>{{ $ccorporal->cc_caracteristica }}</option>
+                    @endforeach                                                     
+                </select> 
+                <span class="invalid-feedback" role="alert">
+                    <strong id="mensajeCaracteristica"></strong>
+                </span>    
+            </div>  
+                <input id="coc_observaion"  class="form-control" onkeyup="mayus(this);" type="text" name="coc_observaion">
+                <span class="invalid-feedback" role="alert">
+                <strong id="mensajeObservacion"></strong>
+                </span>      
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" onclick="AgregarCcorporal()" id='guardarLocalidad'  class="btn btn-primary addLocalidad">Guardar</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
 @endsection
+<script type="text/javascript" src="js/validaciones.js"></script>
+<script type="text/javascript" src="js/Medidas.js"></script>

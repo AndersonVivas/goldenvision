@@ -63,9 +63,7 @@ function EnviarPaciente(){
             $("#pa_cedula").attr("class","form-control form-control-sm");
             $("#_localidades").attr("class","form-control form-control-sm is-valid"); 
             $("#pa_direccion").attr("class","form-control form-control-sm is-valid");
-            $("#pa_ocupacion").attr("class","form-control form-control-sm is-valid");
-
-            
+            $("#pa_ocupacion").attr("class","form-control form-control-sm is-valid");            
                        
 
             var mensajes=msj.responseJSON.errors;

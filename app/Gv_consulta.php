@@ -25,4 +25,8 @@ class Gv_consulta extends Model
     {
         return $this->belongsToMany('GoldenVision\Gv_sintoma','gv_consultas_sintomas','co_id','si_id')->withPivot('cos_otros');
     }
+    public function caracteristicasCor()
+    {
+        return $this->belongsToMany('GoldenVision\Gv_ccorporal','gv_con_ccorporales','co_id','cc_id')->withPivot('coc_observaion');
+    }
 }

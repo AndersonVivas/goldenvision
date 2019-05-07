@@ -47,3 +47,91 @@ function AgregarCcorporal(){
         }       
         });
 }
+function AgregarKeratrometria(){
+    //primera etapa
+    var ke_k1= $("#ke_k1").val();
+    var ke_grk1= $("#ke_grk1").val();
+    var ke_k2= $("#ke_k2").val();
+    var ke_grrs= $("#ke_grrs").val();
+    var ke_km= $("#ke_km").val();
+    var ke_grke= $("#ke_grke").val();
+    //segunda etapa
+    var ke_isv= $("#ke_isv").val();
+    var ke_iha= $("#ke_iha").val();
+    var ke_iva= $("#ke_iva").val();
+    var ke_ihd= $("#ke_ihd").val();
+    var ke_ki= $("#ke_ki").val();    
+    var ke_rmin= $("#ke_rmin").val();
+    var ke_cki= $("#ke_cki").val();
+    var ke_tkc= $("#ke_tkc").val();
+    //tercer etapa
+    var ke_paquip= $("#ke_paquip").val();
+    var ke_xp= $("#ke_xp").val();
+    var ke_yp= $("#ke_yp").val();
+    var ke_paquio= $("#ke_paquio").val();
+    var ke_xo= $("#ke_xo").val();
+    var ke_yo= $("#ke_yo").val();
+    var oj_id=$("select#_oj_id").val();
+    var route = "agregarkeratrometria";    
+    
+
+    $.ajax({
+        url: route,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+        type: 'POST',
+        dataType: 'json',
+        data:{
+            oj_id:oj_id,
+
+            ke_k1: ke_k1,
+            ke_grk1: ke_grk1,
+            ke_k2: ke_k2,
+            ke_grrs: ke_grrs,
+            ke_km: ke_km,
+            ke_grke : ke_grke,
+
+            ke_isv: ke_isv,
+            ke_iha: ke_iha,
+            ke_iva: ke_iva,
+            ke_ihd: ke_ihd,
+            ke_ki: ke_ki,            
+            ke_rmin: ke_rmin,
+            ke_cki: ke_cki,
+            ke_tkc: ke_tkc,
+
+            ke_paquip: ke_paquip,
+            ke_xp: ke_xp,
+            ke_yp: ke_yp,
+            ke_paquio: ke_paquio,
+            ke_xo: ke_xo,
+            ke_yo: ke_yo,
+
+        
+        },
+        success: function(msj){            
+            
+            if(msj.status==400) {                                    
+                $('#mensajeoj_id').text("Esta opción ya fue guardada");                       
+                $("#_oj_id").addClass("is-invalid");               
+             
+        }else if(msj.status==200){
+            console.log('guardado');
+        }            
+            
+           }, 
+        error: function(msj){            
+            var mensajes=msj.responseJSON.errors;
+            $.each(mensajes,function(key,value){
+                 if(key=='oj_id'){
+                    $('#mensajeoj_id').text("Escoja un tipo de ojo");                       
+                    $("#_oj_id").addClass("is-invalid");  
+                 }
+                
+               
+            });
+            
+        }       
+        });
+}

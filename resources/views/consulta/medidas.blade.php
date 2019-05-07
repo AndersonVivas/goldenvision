@@ -105,7 +105,7 @@
                <button type="button" data-toggle="modal" data-target="#ccorporal" class="btn btn-outline-primary btn-rounded waves-effect" style="width:250px">OBSERVACION CORPORAL</button> 
             </div>
             <div class="row">
-              <button type="button" class="btn btn-outline-primary btn-rounded waves-effect" style="width:250px">KERATROMETRIA</button>
+              <button type="button" data-toggle="modal" data-target="#keratrometria" class="btn btn-outline-primary btn-rounded waves-effect" style="width:250px">KERATROMETRIA</button>
             </div>
             <div class="row">
               <button data-toggle="collapse" data-target="#tipoLentes" type="button" class="btn btn-outline-primary btn-rounded waves-effect" style="width:250px">TIPO DE LENTES</button>
@@ -400,6 +400,172 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
           <button type="button" onclick="AgregarCcorporal()" id='guardarLocalidad'  class="btn btn-primary addLocalidad">Guardar</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!--Keratrometria -->
+<div class="modal fade" id="keratrometria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg " role="document">
+            @csrf
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ingresar Keratrometria</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form >
+         @csrf
+         <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
+        <div class="modal-body"> 
+            <div class="row">              
+            
+            <div class="col-md-6">
+                    <div class="row" style="margin-bottom: 5px">
+                    <div class="col-md-10">
+                    <select id="_oj_id" class="custom-select form-control-sm " name="_oj_id"  data-live-search="true" required>
+                            <option value="">--Escoja tipo de ojo--</option>                                        
+                            @foreach ($ojos as $ojo)
+                            <option   value={{ $ojo->oj_id }}>{{ $ojo->oj_tipo }}</option>
+                            @endforeach                                                     
+                        </select> 
+                        <span class="invalid-feedback" role="alert">
+                            <strong id="mensajeoj_id"></strong>
+                        </span>  
+                        </div>
+                    </div>
+                <div class="row" style="margin-bottom: 5px">
+                    <div class="col-md-1">
+                            <small>K1</small>
+                    </div>
+                    <div class="col-md-4">
+                            <input id="ke_k1" class="form-control form-control-sm" type="text"  name="ke_k1">
+                    </div>
+                    <div class="col-md-4">
+                            <input id="ke_grk1" class="form-control form-control-sm" type="text" name="ke_grk1">  
+                    </div>                      
+                </div> 
+                <div class="row" style="margin-bottom: 5px">
+                        <div class="col-md-1">
+                                <small>K2</small>
+                        </div>
+                        <div class="col-md-4">
+                                <input id="ke_k2" class="form-control form-control-sm" type="text" name="ke_k2">
+                        </div>
+                        <div class="col-md-4">
+                                <input id="ke_grrs" class="form-control form-control-sm" type="text" name="ke_grrs">  
+                        </div>                      
+                </div>  
+                <div class="row">
+                        <div class="col-md-1">
+                                <small>Km</small>
+                        </div>
+                        <div class="col-md-4">
+                                <input id="ke_km" class="form-control form-control-sm" type="text" name="ke_km">
+                        </div>
+                        <div class="col-md-4">
+                                <input id="ke_grkm" class="form-control form-control-sm" type="text" name="ke_grkm">  
+                        </div>                      
+                </div>                   
+            </div> 
+            <div class="col-md-6" style="margin-bottom: 5px">
+                    <div class="row" style="margin-bottom: 5px">
+                        <div class="col-md-1">
+                                <small>ISV</small>
+                        </div>
+                        <div class="col-md-4">
+                                <input id="ke_isv" class="form-control form-control-sm" type="text" name="ke_isv">
+                        </div>
+                        <div class="col-md-1">
+                            <small>IHA</small>
+                        </div>
+                            <div class="col-md-4">
+                                    <input id="ke_iha" class="form-control form-control-sm" type="text" name="ke_iha">  
+                            </div>                      
+                    </div> 
+                    <div class="row" style="margin-bottom: 5px">
+                            <div class="col-md-1">
+                                    <small>IVA</small>
+                            </div>
+                            <div class="col-md-4">
+                                    <input id="ke_iva" class="form-control form-control-sm" type="text" name="ke_iva">
+                            </div>
+                            <div class="col-md-1">
+                                <small>IHD</small>
+                            </div>
+                                <div class="col-md-4">
+                                        <input id="ke_ihd" class="form-control form-control-sm" type="text" name="ke_ihd">  
+                                </div>                      
+                        </div> 
+                        <div class="row" style="margin-bottom: 5px">
+                                <div class="col-md-1">
+                                        <small>KI</small>
+                                </div>
+                                <div class="col-md-4">
+                                        <input id="ke_ki" class="form-control form-control-sm" type="text" name="ke_ki">
+                                </div>
+                                <div class="col-md-1">
+                                    <small>Rmin</small>
+                                </div>
+                                    <div class="col-md-4">
+                                            <input id="ke_rmin" class="form-control form-control-sm" type="text" name="ke_rmin">  
+                                    </div>                      
+                            </div> 
+                            <div class="row" style="margin-bottom: 5px">
+                                    <div class="col-md-1">
+                                            <small>CKI</small>
+                                    </div>
+                                    <div class="col-md-4">
+                                            <input id="ke_cki" class="form-control form-control-sm" type="text" name="ke_cki">
+                                    </div>
+                                    <div class="col-md-1">
+                                        <small>IS</small>
+                                    </div>
+                                        <div class="col-md-4">
+                                                <input id="ke_tkc" class="form-control form-control-sm" type="text" name="ke_tkc">  
+                                        </div>                      
+                                </div>  
+                
+            </div> 
+            <div class="col-md-12">
+                    <div class="row" style="margin-bottom: 5px">
+                            <div class="col-md-2">
+                                    <small>Centro de Pupila:</small>
+                            </div>
+                            <div class="col-md-3">
+                                    <input id="ke_paquip" class="form-control form-control-sm" type="text" name="ke_paquip" placeholder="Paqui">
+                            </div>
+                            <div class="col-md-3">
+                                    <input id="ke_xp" class="form-control form-control-sm" type="text" name="ke_xp" placeholder="x(mm)">  
+                            </div> 
+                            <div class="col-md-3">
+                                    <input id="ke_yp" class="form-control form-control-sm" type="text" name="ke_yp" placeholder="y(mm)">  
+                            </div>                      
+                    </div> 
+                    <div class="row" style="margin-bottom: 5px">
+                            <div class="col-md-2">
+                                    <small>Posición más fina:</small>
+                            </div>
+                            <div class="col-md-3">
+                                    <input id="ke_paquio" class="form-control form-control-sm" type="text" name="ke_paquio" placeholder="Paqui">
+                            </div>
+                            <div class="col-md-3">
+                                    <input id="ke_xo" class="form-control form-control-sm" type="text" name="ke_xo" placeholder="x(mm)">  
+                            </div> 
+                            <div class="col-md-3">
+                                    <input id="ke_yo" class="form-control form-control-sm" type="text" name="ke_yo" placeholder="y(mm)">  
+                            </div>                      
+                    </div>   
+                
+            </div>                      
+        </div>  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Terminar</button>
+          <button type="button" onclick="AgregarKeratrometria()" id='guardarLocalidad'  class="btn btn-primary addLocalidad">Guardar</button>
         </div>
         </form>
       </div>

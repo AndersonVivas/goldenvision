@@ -18,7 +18,16 @@ use GoldenVision\Http\Controllers\Gv_pacienteController;
 */
 
 Route::get('/', function () {
-    return 'hola';
+    return view('front.index');
+})->middleware('guest');
+Route::get('contacto', function () {
+    return view('front.contacto');
+})->middleware('guest');
+Route::get('nosotros', function () {
+    return view('front.nosotros');
+})->middleware('guest');
+Route::get('Index', function () {
+    return view('front.index');
 })->middleware('guest');
 
 Route::post('logins','Auth\LoginController@login')->name('logins');
@@ -54,4 +63,5 @@ Route::get('obtenerPaciente/{pa_id}','Gv_pacienteController@obtenerPaciente');
 Route::get('medidasNuevas','Gv_consultaController@index');
 Route::post('ccorporales', 'Gv_consultaController@AgregarCcorporal')->name('ccorporales');
 Route::post('guardarmedidas', 'Gv_consultaController@guardar')->name('guardarmedidas');
+Route::post('agregarkeratrometria', 'Gv_consultaController@AgregarKeratrometria')->name('agregarkeratrometria');
 

@@ -214,7 +214,7 @@
             
       <div class="btn-group" role="group" aria-label="Button group">
             <input id="id_pa"  class="form-control"  type="hidden" name="id_pa">                 
-          <button type="submit" >Agregar Consulta</button>
+          <button type="submit" class="btn btn-primary" >Agregar Consulta</button>
       </div>
     </form>
 @endsection

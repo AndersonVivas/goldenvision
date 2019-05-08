@@ -15,7 +15,7 @@ class Gv_consultaController extends Controller
 {
     public function index(Request $request){
         $ojos=Gv_ojo::orderBy('oj_id', 'asc')->get();
-        $sintomas=Gv_sintoma::orderBy('si_id', 'asc')->get(); 
+        $sintomas=Gv_sintoma::orderBy('si_id', 'asc')->get();
         $ccorporales=Gv_ccorporal::orderBy('cc_caracteristica','asc')->get();       
         return view('consulta.medidas')
         ->with('pa_id',$request->id_pa)
@@ -35,7 +35,7 @@ class Gv_consultaController extends Controller
         $consulta->save();
         
         //Agregar sintomas a consulta
-        /*$cos_otros=$request->otrossintomas;
+        $cos_otros=$request->otrossintomas;
         if (isset($request->sintomas)>0){       
           foreach($request->sintomas as $sintoma){
             if($cos_otros != null && $sintoma==14){
@@ -49,8 +49,8 @@ class Gv_consultaController extends Controller
           }
        } else if( $cos_otros != null){
         $consulta->sintomas()->attach(14,['cos_otros'=>$cos_otros]);
-       }*/        
-        /*
+       }       
+        
        if(\Session::exists('ccorporales')){
         $ccorporales=\Session::get('ccorporales');
         foreach($ccorporales as $ccorporal){ 
@@ -58,9 +58,39 @@ class Gv_consultaController extends Controller
         }  
         \Session::flush('ccorporales');                      
        }    
-       */   
-       
-       return $ccorporales;    
+         
+      if(\Session::exists('keratrometria')){
+        $keratrometrias=\Session::get('keratrometria');
+        foreach($keratrometrias as $keratrometria){ 
+            $consulta->ojos()->attach($keratrometria->oj_id,[
+                'ke_k1'=>$keratrometria->ke_k1,
+                'ke_grk1'=>$keratrometria->ke_grk1,
+                'ke_k2'=>$keratrometria->ke_k2,
+                'ke_grrs'=>$keratrometria->ke_grrs,
+                'ke_km'=>$keratrometria->ke_km,
+                'ke_grkm'=>$keratrometria->ke_grkm,
+
+                'ke_isv'=>$keratrometria->ke_isv,
+                'ke_iha'=>$keratrometria->ke_iha,
+                'ke_iva'=>$keratrometria->ke_iva,
+                'ke_ihd'=>$keratrometria->ke_ihd,
+                'ke_ki'=>$keratrometria->ke_ki,
+                'ke_rmin'=>$keratrometria->ke_rmin,
+                'ke_cki'=>$keratrometria->ke_cki,
+                'ke_tkc'=>$keratrometria->ke_tkc,
+
+                'ke_paquip'=>$keratrometria->ke_paquip,
+                'ke_xp'=>$keratrometria->ke_xp,
+                'ke_yp'=>$keratrometria->ke_yp,
+                'ke_paquio'=>$keratrometria->ke_paquio,
+                'ke_xo'=>$keratrometria->ke_xo,
+                'ke_yo'=>$keratrometria->ke_yo,
+                ]);
+        }  
+        \Session::flush('keratrometria');                      
+       }  
+      
+       return 'guardado';    
     }
     public function AgregarCcorporal(Request $request){
         $request->validate([
@@ -105,7 +135,7 @@ class Gv_consultaController extends Controller
             'ke_k2'=>$request->ke_k2,
             'ke_grrs'=>$request->ke_grrs,
             'ke_km'=>$request->ke_km,
-            'ke_grke'=>$request->ke_grke,
+            'ke_grkm'=>$request->ke_grkm,
 
             'ke_isv'=>$request->ke_isv,
             'ke_iha'=>$request->ke_iha,

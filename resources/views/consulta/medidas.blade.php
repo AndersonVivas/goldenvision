@@ -347,14 +347,32 @@
                                 </div>
             </div>
             </div>
-            <div class="row" style="background-color: blue" >
-                proxima consulta
+            <div class="row"  >
+                    <div class="col-md-12" >
+                    <div class="row md-form form-sm ">                                   
+                            <div class="col-md-11 offset-md-1">
+                                <label for="co_observaciones">Observaciones:</label>                 
+                                <input id="co_observaciones" class="form-control form-control-sm" type="text">
+                                <span class="invalid-feedback" role="alert" id="errorishihara">
+                                    <strong id="mensajeanamnesis"></strong>
+                                </span> 
+                            </div>
+                        </div> 
+                        <div class="row md-form form-sm">                 
+                                <div class="col-md-11 offset-md-1">   
+                                <label for="co_recomendaciones">Recomendaciones:</label>              
+                                    <input id="co_recomendaciones" class="form-control form-control-sm" type="text">
+                                    <span class="invalid-feedback" role="alert" id="error-apellido">
+                                        <strong id="mensajeanamnesis"></strong>
+                                    </span> 
+                                </div>
+                        </div>
             </div>        
     </div>    
     </div>
     <div class="col-md-4 offset-md-8">
-        <div class="row" style="background-color: red" >
-       <button type="submit">Guardar</button>
+        <div class="row"  >
+       <button type="submit" class="btn btn-primary">Guardar Consulta</button>
         </div>
     </div>
  </form>
@@ -376,7 +394,7 @@
          <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
         <div class="modal-body">                       
               <div class="form-group">
-                    <div  role="alert" id="mensjeCcorporal" >
+                    <div  role="alert" id="mensjeCcorporal" class="alert">
                             <strong id="succesMensaje"></strong>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -421,6 +439,12 @@
          @csrf
          <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
         <div class="modal-body"> 
+                <div  role="alert" id="mensjekeratrometria" class="alert">
+                        <strong id="succesMensajek"></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                        </button>  
+                </div>  
             <div class="row">              
             
             <div class="col-md-6">

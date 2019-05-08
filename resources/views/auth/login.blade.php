@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 
 @section('content')
 <div class="container">      
@@ -24,11 +24,10 @@
                                             <strong>{{ $errors->first('su_ciudad') }}</strong>
                                         </span>                                      
                                 @endif
+                                <a id="nuevaLocalidad" data-toggle="modal" data-target="#sucursal" href="#" ><ion-icon name="add-circle-outline"></ion-icon>Agregar nueva sucursal</a>
                                 
                                 </div>
-                                <button type="button" class="btn btn-primary col-md-2" data-toggle="modal" data-target="#sucursal">
-                                        Agregar
-                                </button>
+                                
                              </div>
 
                         <div class="form-group row">
@@ -60,13 +59,13 @@
 
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
+                                <!--<div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
                                         {{ __('Remember Me') }}
                                     </label>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
 
@@ -76,9 +75,9 @@
                                     {{ __('Login') }}
                                 </button>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                               <!-- <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
-                                </a>
+                                </a>-->
                             </div>
                         </div>
                     </form>
@@ -103,7 +102,7 @@
             <div class="modal-body">              
                   <div class="form-group">
                       <label for="su_ciudad">Agregue una Localidad</label>
-                      <input id="su_ciuda" class="form-control" onkeyup="mayus(this);" type="text" name="su_ciudad">
+                      <input id="su_ciuda" class="form-control" onkeyup="mayus(this);" type="text" name="su_ciudad" placeholder="Ciudad">
                   </div>             
             </div>
             <div class="modal-footer">

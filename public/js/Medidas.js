@@ -54,7 +54,7 @@ function AgregarKeratrometria(){
     var ke_k2= $("#ke_k2").val();
     var ke_grrs= $("#ke_grrs").val();
     var ke_km= $("#ke_km").val();
-    var ke_grke= $("#ke_grke").val();
+    var ke_grkm= $("#ke_grkm").val();
     //segunda etapa
     var ke_isv= $("#ke_isv").val();
     var ke_iha= $("#ke_iha").val();
@@ -90,7 +90,7 @@ function AgregarKeratrometria(){
             ke_k2: ke_k2,
             ke_grrs: ke_grrs,
             ke_km: ke_km,
-            ke_grke : ke_grke,
+            ke_grkm : ke_grkm,
 
             ke_isv: ke_isv,
             ke_iha: ke_iha,
@@ -117,7 +117,8 @@ function AgregarKeratrometria(){
                 $("#_oj_id").addClass("is-invalid");               
              
         }else if(msj.status==200){
-            console.log('guardado');
+            $("#succesMensajek").text("Información guardad");
+            $("#mensjekeratrometria").addClass("alert-success alert-dismissible fade show");
         }            
             
            }, 

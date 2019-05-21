@@ -1,6 +1,11 @@
 
 function EnviarPaciente(){
-    var pa_cedula= $("#pa_cedula").val();
+   var pa_cedula;
+   if($("#pa_registrado").val()=='si'){
+      pa_cedula="registrado";
+   }else if($("#pa_registrado").val()=='no'){
+      pa_cedula= $("#pa_cedula").val();
+   }    
     var pa_nombres= $("#pa_nombres").val();
     var pa_apellidos= $("#pa_apellidos").val();
     var pa_fechanac= $("#pa_fechanac").val();
@@ -12,11 +17,10 @@ function EnviarPaciente(){
     var pa_antecedentesf= $("#pa_antecedentesf").val();
     var pa_enfamiliares= $("#pa_enfamiliares").val();
     var pa_enpersonales= $("#pa_enpersonales").val();
-
-    var route = "guardarPaciente";
-   
+    var pa_id= $("#pa_id").val(); 
+    console.log(pa_id);
     
-
+    var route = "guardarPaciente";  
     $.ajax({
         url: route,
         headers: {
@@ -36,7 +40,8 @@ function EnviarPaciente(){
             pa_ocupacion : pa_ocupacion,
             pa_antecedentesf : pa_antecedentesf,
             pa_enfamiliares : pa_enfamiliares,
-            pa_enpersonales : pa_enpersonales,        
+            pa_enpersonales : pa_enpersonales, 
+            pa_id : pa_id,       
         },
         success: function(msj){ 
             $("#pa_nombres").attr("class","form-control form-control-sm");
@@ -47,11 +52,17 @@ function EnviarPaciente(){
             $("#_localidades").attr("class","form-control form-control-sm"); 
             $("#pa_direccion").attr("class","form-control form-control-sm");
             $("#pa_ocupacion").attr("class","form-control form-control-sm");
-            $("#succesMensaje").text("Paciente guardado");
-            $("#mensjeInformacion").addClass("alert alert-success alert-dismissible fade show");
+           /* $("#succesMensaje").text("Paciente guardado");
+            $("#mensjeInformacion").attr("class","alert alert-warning ");*/
+            $("#lblid").attr("class","active");
+            if($("#pa_cedula").val()!=null){
+               $("#pa_registrado").val('si');
+            }else{
+               $("#pa_registrado").val('no');
+            }
             $("#pa_id").val(msj.pa_id); 
             $("#id_pa").val(msj.pa_id);   
-            console.log(msj.pa_id)              
+            alert("Paciente guardado correctamente");            
            }, 
         error: function(msj){          
 
@@ -108,7 +119,25 @@ function EnviarPaciente(){
         }       
         });
 }
-
+function limpiarFormulario(){
+$("#pa_registrado").val('no'); 
+$("#pa_cedula").val('');   
+$("#pa_nombres").val('');
+$("#pa_apellidos").val('');
+$("#pa_fechanac").val('');
+$("#pa_correo").val('');
+$("#pa_telefono").val('');
+$("select#_localidades").val('');
+$("#pa_direccion").val('');
+$("#pa_ocupacion").val('');
+$("#pa_antecedentesf").val('NINGUNO');
+$("#pa_enfamiliares").val('NINGUNA');
+$("#pa_enpersonales").val('NINGUNA');
+$("#pa_id").val(''); 
+$("#id_pa").val('');
+$("#buscarpaciente").val('');
+$('#tablaprueba tbody').empty();
+}
 function medidasNuevas(){
    var pa_id=$("#pa_id").val(); 
    var route= "medidasNuevas/"+pa_id;

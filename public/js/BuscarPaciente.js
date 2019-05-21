@@ -31,25 +31,57 @@ function buscarPac(){
 }
 function CargarPaciente(pa_id){    
     var route= "obtenerPaciente/"+pa_id;
+    
     //$("#_su_ciudad").empty();
     $.get(route,function(res){
         console.log(res);
-        $('#buscarpaciente').val(res[0].pa_nombres+" "+res[0].pa_apellidos);
+        $('#buscarpaciente').val(res.paciente.pa_nombres+" "+res.paciente.pa_apellidos);
         $("#lblid").attr("class","active");
-        $("#pa_id").val(res[0].pa_id);
-        $("#id_pa").val(res[0].pa_id);         
-        $("#lblcedula").attr("class","active");
-        $("#pa_cedula").val(res[0].pa_cedula);                
-        $("#pa_nombres").val(res[0].pa_nombres);
-        $("#pa_apellidos").val(res[0].pa_apellidos);
-        $("#pa_fechanac").val(res[0].pa_fechanac);
-        $("#pa_correo").val(res[0].pa_correo);
-        $("#pa_telefono").val(res[0].pa_telefono);
-        $("select#_localidades").val(res[0].lo_id);
-        $("#pa_direccion").val(res[0].pa_direccion);
-        $("#pa_ocupacion").val(res[0].pa_ocupacion);
-        $("#pa_antecedentesf").val(res[0].pa_antecedentesf);
-        $("#pa_enfamiliares").val(res[0].pa_enfamiliares);
-        $("#pa_enpersonales").val(res[0].pa_enpersonales);
-    });
+        $("#pa_id").val(res.paciente.pa_id);
+        $("#id_pa").val(res.paciente.pa_id);
+        if(res.paciente.pa_cedula != null){           
+         $("#lblcedula").attr("class","active");
+          $("#pa_cedula").val(res.paciente.pa_cedula);  
+          $("#pa_registrado").val('si');       
+          document.getElementById("pa_cedula").disabled = true;          
+        }else{
+            document.getElementById("pa_cedula").disabled = false; 
+            $("#pa_cedula").val(""); 
+            $("#pa_registrado").val('no');              
+        }
+        $("#lblnombres").attr("class","active");                
+        $("#pa_nombres").val(res.paciente.pa_nombres);
+        $("#lblapellidos").attr("class","active");
+        $("#pa_apellidos").val(res.paciente.pa_apellidos);    
+        $("#pa_fechanac").val(res.paciente.pa_fechanac);
+        $("#lblcorreo").attr("class","active");
+        $("#pa_correo").val(res.paciente.pa_correo);
+        $("#lbltelefono").attr("class","active");
+        $("#pa_telefono").val(res.paciente.pa_telefono);
+        $("select#_localidades").val(res.paciente.lo_id);
+        $("#lbldireccion").attr("class","active");
+        $("#pa_direccion").val(res.paciente.pa_direccion); 
+        $("#lblocupacion").attr("class","active");       
+        $("#pa_ocupacion").val(res.paciente.pa_ocupacion);
+        $("#pa_antecedentesf").val(res.paciente.pa_antecedentesf);
+        $("#pa_enfamiliares").val(res.paciente.pa_enfamiliares);
+        $("#pa_enpersonales").val(res.paciente.pa_enpersonales);
+        $('#tablaprueba tbody').empty();
+        
+        $.each(res.consultas,function(key,value){ 
+            var htmlTags = "<tr data-id="+value.co_id+">"+
+        '<td>' + value.co_fecha + '</td>'+        
+        '<td>' + value.co_motivo + '</td>'+
+        '<td>' + value.co_anamnesis + '</td>'+
+        '<td>' + value.co_observaciones + '</td>'+
+        '<td><button>Ver</button><button>Generar Certificado</button></td>'+
+        
+      '</tr>';
+      
+       $('#tablaprueba tbody').append(htmlTags);
+        });    
+            
+        });
+        
+        
 }

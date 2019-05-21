@@ -5,6 +5,7 @@ namespace GoldenVision\Http\Controllers;
 use Illuminate\Http\Request;
 use GoldenVision\Gv_sucursal;
 use GoldenVision\Gv_localidad;
+use GoldenVision\Gv_clente;
 
 class Gv_selectsController extends Controller
 {
@@ -47,5 +48,41 @@ class Gv_selectsController extends Controller
     public function obtenerLocalidades(){
         $localidades= Gv_localidad::orderBy('lo_nombre', 'asc')->get();
             return response()->json($localidades->toArray());
+    }
+    public function guardarLenteContacto(Request $request)
+    {
+       $request->validate([
+            'cle_caracteristica' => 'unique:gv_clentes',            
+        ]);        
+        if($request->ajax()){
+            $lenteM= new Gv_clente(); 
+            $lenteM->le_id=1; 
+            $lenteM->cle_caracteristica=$request->cle_caracteristica;        
+            $lenteM->save();
+            $lentesContacto=Gv_clente::where('le_id',1)
+            -> orderBy('cle_caracteristica', 'asc')->get();
+            return response()->json([
+                 'status'=> 'Información guardada',
+                 'lentesContacto' => $lentesContacto
+             ]);
+        }
+    }
+    public function guardarLenteMarco(Request $request)
+    {
+       $request->validate([
+            'cle_caracteristica' => 'unique:gv_clentes',            
+        ]);        
+        if($request->ajax()){
+            $lenteM= new Gv_clente(); 
+            $lenteM->le_id=2; 
+            $lenteM->cle_caracteristica=$request->cle_caracteristica;        
+            $lenteM->save();
+            $lentesMarco=Gv_clente::where('le_id',2)
+            -> orderBy('cle_caracteristica', 'asc')->get();
+            return response()->json([
+                 'status'=> 'Información guardada',
+                 'lentesMarco' => $lentesMarco
+             ]);
+        }
     }
 }

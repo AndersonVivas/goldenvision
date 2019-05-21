@@ -23,8 +23,7 @@ class Gv_pacienteRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'pa_cedula' => 'nullable|unique:gv_pacientes|ecuador:ci',
+        return [            
             'pa_nombres' => 'required',
             'pa_apellidos' => 'required',
             'pa_fechanac' => 'required',

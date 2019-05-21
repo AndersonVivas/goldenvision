@@ -15,6 +15,6 @@ class Gv_paciente extends Model
     }
     public function consultas()
     {
-        return $this->hasMany('GoldenVision\Gv_consulta');
+        return $this->hasMany('GoldenVision\Gv_consulta','co_id','pa_id');
     }
 }

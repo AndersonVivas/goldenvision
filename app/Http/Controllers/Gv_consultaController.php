@@ -10,10 +10,30 @@ use GoldenVision\Gv_consulta;
 use GoldenVision\Gv_ccorporal;
 use phpDocumentor\Reflection\Types\Object_;
 use GoldenVision\Gv_ojo;
+use GoldenVision\Gv_clente;
+use GoldenVision\Gv_localidad;
 
 class Gv_consultaController extends Controller
 {
     public function index(Request $request){
+        $request->validate([
+            'id_pa' => 'required',            
+        ]);
+        $rufinal=Gv_consulta::where('pa_id',$request->id_pa)
+        ->orderBy('co_id', 'desc')
+        ->take(1)->get(); 
+              
+        if(count($rufinal)>0){
+          $rufinalx=Gv_consulta::find($rufinal[0]->co_id)->examenes()->where('te_id',2)->get();
+          $lentesconsulta=Gv_consulta::find($rufinal[0]->co_id)->lentes()->get();
+        }else{
+            $rufinalx="";
+            $lentesconsulta="";
+        }        
+        $lentesContacto=Gv_clente::where('le_id',1)
+         -> orderBy('cle_caracteristica', 'asc')->get();
+        $lentesMarco=Gv_clente::where('le_id',2)
+         -> orderBy('cle_caracteristica', 'asc')->get();         
         $ojos=Gv_ojo::orderBy('oj_id', 'asc')->get();
         $sintomas=Gv_sintoma::orderBy('si_id', 'asc')->get();
         $ccorporales=Gv_ccorporal::orderBy('cc_caracteristica','asc')->get();       
@@ -21,21 +41,34 @@ class Gv_consultaController extends Controller
         ->with('pa_id',$request->id_pa)
         ->with('sintomas',$sintomas)
         ->with('ccorporales',$ccorporales)
-        ->with('ojos',$ojos);
+        ->with('ojos',$ojos)
+        ->with('lentesContacto',$lentesContacto)
+        ->with('lentesMarco',$lentesMarco)
+        ->with('rxanterior',$rufinalx)
+        ->with('lentesconsulta',$lentesconsulta);
+                    
     }
     public function guardar(Request $request){
         //Agragar Consulta
-        $us_cedula=Auth::user()->us_cedula;
+       $us_cedula=Auth::user()->us_cedula;
         $su_id=\Session::get('id_sucursal');
         $pa_id=$request->pa_id;  
         $consulta=new Gv_consulta();
+        $consulta->co_fecha= NOW();
         $consulta->pa_id=$pa_id;
         $consulta->us_cedula=$us_cedula;
         $consulta->su_id=$su_id;
+        $consulta->co_motivo=$request->co_motivo;
+        $consulta->co_anamnesis=$request->co_anamnesis;
+        $consulta->co_ishihara=$request->co_ishihara;
+        $consulta->co_observaciones=$request->co_observaciones;
+        $consulta->co_recomendaciones=$request->co_recomendaciones;
+        $consulta->pc_verificado=false;
+        $consulta->pc_fecha=$request->pc_fecha;
         $consulta->save();
         
-        //Agregar sintomas a consulta
-        $cos_otros=$request->otrossintomas;
+    //Agregar sintomas a consulta
+       $cos_otros=$request->otrossintomas;
         if (isset($request->sintomas)>0){       
           foreach($request->sintomas as $sintoma){
             if($cos_otros != null && $sintoma==14){
@@ -50,7 +83,7 @@ class Gv_consultaController extends Controller
        } else if( $cos_otros != null){
         $consulta->sintomas()->attach(14,['cos_otros'=>$cos_otros]);
        }       
-        
+        //caracteristicas corporales
        if(\Session::exists('ccorporales')){
         $ccorporales=\Session::get('ccorporales');
         foreach($ccorporales as $ccorporal){ 
@@ -88,10 +121,72 @@ class Gv_consultaController extends Controller
                 ]);
         }  
         \Session::flush('keratrometria');                      
-       }  
+       } 
+       
       
-       return 'guardado';    
+       //lentes
+      if($request->_lenteContacto <> null){
+        $consulta->lentes()->attach($request->_lenteContacto); 
+        $consulta->examenes()->attach(3,[
+            'mo_esfod'=> $request->ODeslc,
+            'mo_esfoi'=> $request->OIeslc,
+            'mo_ciod'=> $request->ODcilc,
+            'mo_cioi'=> $request->OIcilc,
+            'mo_ejod'=> $request->ODejlc,
+            'mo_ejoi'=> $request->OIejlc,            
+        ]);
+      }
+       if($request->_lenteMarco <> null){
+        $consulta->lentes()->attach($request->_lenteMarco);   
+       }
+
+       //Rx Final
+       $consulta->examenes()->attach(2,[
+        'mo_esfod' => $request->ODesrx,
+        'mo_esfoi' => $request->OIesrx,
+        'mo_ciod' => $request->ODcirx,
+        'mo_cioi' => $request->OIcirx,
+        'mo_ejod' => $request->ODejrx,
+        'mo_ejoi' => $request->OIejrx,
+        'mo_dnpod' => $request->ODdnprx,
+        'mo_dnpoi' => $request->OIdnprx,
+        'mo_avlod' => $request->ODavlrx,
+        'mo_avloi' => $request->OIavlrx,
+        'mo_avcod' => $request->ODavcrx,
+        'mo_avcoi' => $request->OIavcrx,
+        'mo_addod' => $request->ODaddrx,
+        'mo_addoi' => $request->OIaddrx,
+        'mo_alturaod' => $request->ODalrx,
+        'mo_alturaoi' => $request->OIalrx,
+        'mo_aumentar' => $request->aumdisrx, 
+    ]);
+    //Rentinoscopia
+    $consulta->examenes()->attach(1,[
+        'mo_esfod' => $request->ODesre,
+        'mo_esfoi' => $request->OIesre,
+        'mo_ciod' => $request->ODcire,
+        'mo_cioi' => $request->OIcire,
+        'mo_ejod' => $request->ODejre,
+        'mo_ejoi' => $request->OIejre,
+        'mo_dnpod' => $request->ODdnpre,
+        'mo_dnpoi' => $request->OIdnpre,
+        'mo_avlod' => $request->ODavlre,
+        'mo_avloi' => $request->OIavlre,
+        'mo_avcod' => $request->ODavcre,
+        'mo_avcoi' => $request->OIavcre,
+        'mo_addod' => $request->ODaddre,
+        'mo_addoi' => $request->OIaddre,
+        'mo_alturaod' => $request->ODalre,
+        'mo_alturaoi' => $request->OIalre,
+        'mo_aumentar' => $request->aumdisre, 
+    ]);      
+    
+    $localidades=Gv_localidad::orderBy('lo_nombre', 'asc')->get();
+    return redirect()->route('consulta'); 
     }
+
+
+
     public function AgregarCcorporal(Request $request){
         $request->validate([
             'coc_observaion' => 'required',
@@ -119,7 +214,7 @@ class Gv_consultaController extends Controller
     }
     return response()->json([
         'status'=> 200,
-    ]); 
+    ]);
          
 
     }

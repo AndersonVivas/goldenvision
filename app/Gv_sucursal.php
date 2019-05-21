@@ -12,6 +12,6 @@ class Gv_sucursal extends Model
 
     public function consultas()
     {
-        return $this->hasMany('GoldenVision\Gv_consulta');
+        return $this->hasMany('GoldenVision\Gv_consulta','co_id');
     }
 }

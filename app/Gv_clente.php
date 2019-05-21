@@ -13,4 +13,8 @@ class Gv_clente extends Model
     {
         return $this->belongsTo('GoldenVision\Gv_lente','le_id');
     }
+    public function consultas()
+    {
+        return $this->belongsToMany('GoldenVision\Gv_consulta','gv_consulta_lentes','cle_id','co_id');
+    }
 }

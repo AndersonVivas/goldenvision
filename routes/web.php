@@ -52,6 +52,10 @@ Route::get('listarSucursal','Gv_selectsController@obtenerSucursal')->name('lista
     //Localidades
 Route::post('/agregarLocalidad','Gv_selectsController@guardarLocalidad')->name('/agregarLocalidad');
 Route::get('listarLocalidades','Gv_selectsController@obtenerLocalidades')->name('listarLocalidades');
+    //Lentes Contacto
+Route::post('agregarLenteC','Gv_selectsController@guardarLenteContacto')->name('agregarLenteC');
+   //Lentes Marco
+Route::post('/agregarLenteM','Gv_selectsController@guardarLenteMarco')->name('/agregarLenteM');
 
 //consulta
 Route::get('consulta','Gv_pacienteController@index')->name('consulta');

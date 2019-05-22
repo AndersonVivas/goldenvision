@@ -11,70 +11,73 @@
                         <small>  RX EN USO</small>
                     </div>
                     <div class="card-body">  
-                        @if (isset($rxanterior[0])<>null)
-                        <div class="row">    
-                                <div class="col-md-2">
-                                    <small for="ODesru">ESF:</small> 
-                                    <div class="form-group">
-                                        <small for="ODesru">OD:</small>
-                                        <input id="ODesru" class="form-control form-control-sm" value="{{ $rxanterior[0]->pivot->mo_esfod }}" type="text" disabled>                                    
-                                        <small for="OIesru">OI:</small>
-                                        <input id="OIesru" class="form-control form-control-sm" value="{{ $rxanterior[0]->pivot->mo_esfoi }}" type="text"disabled>
-                                    </div>              
-                                </div> 
-                                <div class="col-md-2">
-                                    <small for="ODesru">CILINDRO:</small>  
-                                    <div class="form-group">
-                                        <small for="ODciru">OD:</small>
-                                        <input id="ODciru" class="form-control form-control-sm" value="{{ $rxanterior[0]->pivot->mo_ciod }}" type="text"disabled>
-                                        <small for="OIciru">OI:</small>
-                                        <input id="OIciru" class="form-control form-control-sm" value="{{ $rxanterior[0]->pivot->mo_cioi }}" type="text"disabled>                                                      
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <small>EJE:</small>
-                                        <div class="form-group"> 
-                                            <small for="ODesru">OD:</small>
-                                            <input id="ODesru" class="form-control form-control-sm" value="{{ $rxanterior[0]->pivot->mo_ejod }}" type="text"disabled>                                    
-                                            <small for="OIesru">OI:</small>
-                                            <input id="OIesru" class="form-control form-control-sm" value="{{ $rxanterior[0]->pivot->mo_ejoi }}" type="text"disabled>                                                     
-                                        </div>
-                                </div>
-                                <div class="col-md-2 offset-md-2">
-                                    <small>AV/L:</small>
-                                    <div class="form-group">
-                                        <small for="ODavlru">OD:</small>
-                                        <input id="ODavlru" class="form-control form-control-sm" type="text" value="{{ $rxanterior[0]->pivot->mo_avlod }}" disabled>                                    
-                                        <small for="OIavlru">OI:</small>
-                                        <input id="OIavlru" class="form-control form-control-sm" type="text" value="{{ $rxanterior[0]->pivot->mo_avloi }}" disabled>                                                     
-                                    </div>
-                                </div>
-                                <div class="col-md-2 ">
-                                    <small>AV/C:</small>
-                                    <div class="form-group"> 
-                                        <small for="ODesru">OD:</small>
-                                        <input id="ODesru" class="form-control form-control-sm" type="text" value="{{ $rxanterior[0]->pivot->mo_avcod }}" disabled>                                    
-                                        <small for="OIesru">OI:</small>
-                                        <input id="OIesru" class="form-control form-control-sm" type="text" value="{{ $rxanterior[0]->pivot->mo_avcod }}" disabled>                                                     
-                                    </div>
-                                </div>
-                                @if (isset($lentesconsulta)<>null)
-                                  <small style="color:brown">El paciente utiliza lentes:&nbsp; </small>   
-                                   @foreach ($lentesconsulta as $lente)
-                                  <small style="color:brown">de  {{ $lente->lente->le_tipo   }}:&nbsp;{{ $lente->cle_caracteristica   }},&nbsp; </small>
-                                  @endforeach                                    
-                                @else
-                                  <small style="color:brown">No tiene registrado lentes</small>
-                                @endif                                  
-                            </div> 
-                            @else
-                                
-                            <div class="col-md-12 ">                                
-                                    <div class="form-group"> 
+                    @if ($rxanterior<>null)
+                       @foreach ($rxanterior as $ran)
+                       @if ($ran->te_examen=='Rx-Final')
+                       <div class="row">    
+                               <div class="col-md-2">
+                                   <small for="ODesru">ESF:</small> 
+                                   <div class="form-group">
+                                       <small for="ODesru">OD:</small>
+                                       <input id="ODesru" class="form-control form-control-sm" value="{{ $ran->pivot->mo_esfod }}" type="text" disabled>                                    
+                                       <small for="OIesru">OI:</small>
+                                       <input id="OIesru" class="form-control form-control-sm" value="{{ $ran->pivot->mo_esfoi }}" type="text"disabled>
+                                   </div>              
+                               </div> 
+                               <div class="col-md-2">
+                                   <small for="ODesru">CILINDRO:</small>  
+                                   <div class="form-group">
+                                       <small for="ODciru">OD:</small>
+                                       <input id="ODciru" class="form-control form-control-sm" value="{{ $ran->pivot->mo_ciod }}" type="text"disabled>
+                                       <small for="OIciru">OI:</small>
+                                       <input id="OIciru" class="form-control form-control-sm" value="{{ $ran->pivot->mo_cioi }}" type="text"disabled>                                                      
+                                   </div>
+                               </div>
+                               <div class="col-md-2">
+                                   <small>EJE:</small>
+                                       <div class="form-group"> 
+                                           <small for="ODesru">OD:</small>
+                                           <input id="ODesru" class="form-control form-control-sm" value="{{ $ran->pivot->mo_ejod }}" type="text"disabled>                                    
+                                           <small for="OIesru">OI:</small>
+                                           <input id="OIesru" class="form-control form-control-sm" value="{{ $ran->pivot->mo_ejoi }}" type="text"disabled>                                                     
+                                       </div>
+                               </div>
+                               <div class="col-md-2 offset-md-2">
+                                   <small>AV/L:</small>
+                                   <div class="form-group">
+                                       <small for="ODavlru">OD:</small>
+                                       <input id="ODavlru" class="form-control form-control-sm" type="text" value="{{ $ran->pivot->mo_avlod }}" disabled>                                    
+                                       <small for="OIavlru">OI:</small>
+                                       <input id="OIavlru" class="form-control form-control-sm" type="text" value="{{ $ran->pivot->mo_avloi }}" disabled>                                                     
+                                   </div>
+                               </div>
+                               <div class="col-md-2 ">
+                                   <small>AV/C:</small>
+                                   <div class="form-group"> 
+                                       <small for="ODesru">OD:</small>
+                                       <input id="ODesru" class="form-control form-control-sm" type="text" value="{{ $ran->pivot->mo_avcod }}" disabled>                                    
+                                       <small for="OIesru">OI:</small>
+                                       <input id="OIesru" class="form-control form-control-sm" type="text" value="{{ $ran->pivot->mo_avcod }}" disabled>                                                     
+                                   </div>
+                               </div>
+                               @if ($lentesconsulta != null)
+                                 <small style="color:brown">El paciente utiliza lentes:&nbsp; </small>   
+                                  @foreach ($lentesconsulta as $lente)
+                                 <small style="color:brown">de  {{ $lente->lente->le_tipo   }}:&nbsp;{{ $lente->cle_caracteristica   }},&nbsp; </small>
+                                 @endforeach                                    
+                               @else
+                                 <small style="color:brown">No tiene registrado lentes</small>
+                               @endif                                  
+                           </div>                                
+                       @endif
+                   @endforeach                            
+                @else 
+                   <div class="col-md-12 ">                                
+                        <div class="form-group"> 
                                         <h1 for="ODesru" style="color:cornflowerblue">No existe datos Anteriores</h1>
                                       </div>
                                 </div>    
-                        @endif                                                
+                @endif                                                
                         </div>
                     </div>
                 </div>

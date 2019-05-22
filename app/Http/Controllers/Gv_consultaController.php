@@ -24,7 +24,7 @@ class Gv_consultaController extends Controller
         ->take(1)->get(); 
               
         if(count($rufinal)>0){
-          $rufinalx=Gv_consulta::find($rufinal[0]->co_id)->examenes()->where('te_id',2)->get();
+          $rufinalx=Gv_consulta::find($rufinal[0]->co_id)->examenes()->get();
           $lentesconsulta=Gv_consulta::find($rufinal[0]->co_id)->lentes()->get();
         }else{
             $rufinalx="";
@@ -269,5 +269,14 @@ class Gv_consultaController extends Controller
             'status'=> 200,
         ]); 
 
+    }
+    public function obtenerConsulta(Request $request){
+         /*$sintomas=Gv_consulta::find($co_id)->sintomas()->get();
+         $observaciones=Gv_consulta::find($co_id)->caracteristicasCor()->get();
+         $examenes=Gv_consulta::find($co_id)->examenes()->get();
+         $keratrometria=Gv_consulta::find($co_id)->ojos()->get();
+         $lentes=Gv_consulta::find($co_id)->lentes()->get(); */ 
+        $consulta=Gv_consulta::find($request->co_id);    
+        return view('consulta.verConsulta')->with('consulta',$consulta);
     }
 }

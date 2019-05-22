@@ -45,7 +45,7 @@ class Gv_consulta extends Model
     }
     public function examenes()
     {
-        return $this->belongsToMany('GoldenVision\Gv_consulta','gv_medidas_oculares','co_id','te_id')
+        return $this->belongsToMany('GoldenVision\Gv_tp_examen','gv_medidas_oculares','co_id','te_id')
         ->withPivot('mo_esfod','mo_esfoi',
         'mo_ciod','mo_cioi',
         'mo_ejod','mo_ejoi',

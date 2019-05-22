@@ -74,7 +74,7 @@ function CargarPaciente(pa_id){
         '<td>' + value.co_motivo + '</td>'+
         '<td>' + value.co_anamnesis + '</td>'+
         '<td>' + value.co_observaciones + '</td>'+
-        '<td><button>Ver</button><button>Generar Certificado</button></td>'+
+        "<td><a href='obtenerConsulta?co_id="+value.co_id+"' class='btn btn-primary'>Ver</a><button>Generar Certificado</button></td>"+
         
       '</tr>';
       
@@ -84,4 +84,15 @@ function CargarPaciente(pa_id){
         });
         
         
+}
+function verConsulta(co_id){
+  var route='obtenerConsulta/'+co_id;
+  console.log(co_id);
+  $.get(route,function(res){
+
+  });
+
+  $('#_consulta').modal('toggle');
+  
+
 }

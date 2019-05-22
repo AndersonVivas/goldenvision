@@ -1,6 +1,6 @@
 <div class="card" >
-        <div class="card-header">Información del Paciente                      
-               <button onclick="limpiarFormulario()"  class="btn btn-mdb-color btn-sm" style="float:inline-end" >Limpiar Formulario</button> 
+        <div class="card-header"> Información del Paciente  
+            <button onclick="limpiarFormulario()"  class="btn btn-mdb-color btn-sm" style="float:inline-end" >Limpiar Formulario</button> 
         </div>
         <div class="card-body"> 
             <form action="guardarPaciente" method="post" >                
@@ -145,8 +145,8 @@
                 </div>              
         </div>
         <div class="form-group row">
-                <div class="col-md-11 ">
-                    <button type="button" onclick="EnviarPaciente()" style="float:inline-end" class="btn btn-primary">
+                <div class="col-md-11 " style="text-align:end">
+                    <button type="button" onclick="EnviarPaciente()"  class="btn btn-primary">
                         Guardar Información
                     </button>       
                     

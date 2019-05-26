@@ -62,8 +62,9 @@ Route::get('consulta','Gv_pacienteController@index')->name('consulta');
 Route::post('guardarPaciente','Gv_pacienteController@guardarPaciente')->name('guardarPaciente');
 Route::post('buscarPaciente','Gv_pacienteController@autocomplete')->name('buscarPaciente');
 Route::get('obtenerPaciente/{pa_id}','Gv_pacienteController@obtenerPaciente');
-
 Route::get('obtenerConsulta','Gv_consultaController@obtenerConsulta');
+Route::post('generarCertificado','Gv_consultaController@imprimirCertificado');
+Route::get('informacionCer/{co_id}','Gv_consultaController@obtenerConCer');
 
 //medidas
 Route::get('medidasNuevas','Gv_consultaController@index');

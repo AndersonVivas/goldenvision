@@ -8,6 +8,7 @@ class Gv_rol extends Model
 {
     protected $table = 'gv_roles';
     public $timestamps = false;
+    protected $primaryKey='ro_id';
 
     public function usuarios()
     {

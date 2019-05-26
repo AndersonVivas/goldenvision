@@ -8,6 +8,7 @@ class Gv_usuario extends Model
 {
     protected $table = 'gv_usuarios';
     public $timestamps = false;
+    protected $primaryKey='us_cedula';
     public function rol()
     {
         return $this->belongsTo('GoldenVision\Gv_rol', 'ro_id');

@@ -3,7 +3,81 @@
 
 @section('content')
 <div class="container-fluid">
-<div class="row">
+    <div class="row" >
+        <div class="col-md-10 "> 
+        <div class="card">
+            <div class="card-header" style="height: 35px">
+                <small>Información general de consulta</small>
+            </div>
+            <div class="card-body">
+                <div class="row">               
+                      <div class="col-md-4">
+                            <small>Paciente:</small>
+                            <small> {{ $consulta->paciente->pa_nombres }} {{ $consulta->paciente->pa_apellidos }}</small>
+                      </div>  
+                      <div class="col-md-4">
+                            <small for="cedula">Cedula del Paciente:</small>
+                            <small>{{ $consulta->paciente->pa_cedula }}</small>
+                        </div>      
+                              <div class="col-md-4">
+                                    <small for="cedula">Ocupación:</small>
+                                <small>{{ $consulta->paciente->pa_ocupacion }}</small>
+                            </div>   
+                </div>
+                <div class="row">                                         
+                          <div class="col-md-4">
+                                <small>Opt/Oft:</small>
+                                <small> {{ $consulta->usuario->us_nombres }} {{ $consulta->usuario->us_apellidos}}</small>
+                          </div>                 
+                              <div class="col-md-4">
+                                    <small for="cedula">Sucursal de atención:</small>
+                                <small>{{ $consulta->sucursal->su_ciudad }}</small>
+                            </div> 
+                            <div class="col-md-4">
+                                    <small for="cedula">Fecha de Consulta:</small>
+                                <small>{{ $consulta->co_fecha }}</small>
+                            </div>   
+                    </div>
+            </div>            
+        </div>
+        
+        <div class="card" style="margin-top: 10px">
+                <div class="card-header" style="height: 35px">
+                    <small>Enfermedades</small>
+                </div>
+                <div class="card-body">
+                    <div class="row">               
+                          <div class="col-md-12">
+                                <small>Antecedentes Familiares:</small>
+                                <small> {{ $consulta->paciente->pa_antecedentesf }}</small>
+                          </div>  
+                          <div class="col-md-12">
+                                <small for="cedula">Enfermedades Familiares:</small>
+                                <small>{{ $consulta->paciente->pa_enfamiliares }}</small>
+                            </div>      
+                                  <div class="col-md-12">
+                                        <small for="cedula">Enfermedades Personales:</small>
+                                    <small>{{ $consulta->paciente->pa_enpersonales}}</small>
+                                </div>   
+                    </div>
+                    
+                </div>
+            </div>
+    </div>  
+    <div class="col-md-2">
+            <form method="get" action="medidasNuevas">            
+               <div class="btn-group" role="group" aria-label="Button group">
+                   <input id="id_pa"  class="form-control"  type="hidden" name="id_pa" value="{{ $consulta->pa_id }}">                 
+                       <button type="submit" class="btn btn-primary" >Agregar Consulta</button>
+                      
+                   </div>
+           </form> 
+           <button class='btn btn-primary' onclick='generar({{ $consulta->co_id }})'>Generar Certificado</button>          
+                      
+       </div>  
+    </div> 
+        
+<div class="row" style="margin-top: 10px">
     <!--sintomas-->
     <div class="col-md-4" style="margin-bottom: 10px">            
         <div class="card">
@@ -41,12 +115,25 @@
                 </table>
             </div>
         </div>
+            <div class="card" style="margin-top: 10px">
+                    <div class="card-header" style="height: 35px">
+                                <small>Lentes en Uso</small>
+                    </div>
+                    <div class="card-body"> 
+                        @foreach ($consulta->lentes as $lente)
+                        <label>Lentes de {{ $lente->lente->le_tipo }}:  {{ $lente->cle_caracteristica }}</label> 
+                                            
+                        @endforeach
+                    </div>
+            </div>  
+        
     </div>
         <!--examene-->
-       
+    
     <div class="col-md-8">   
-        @foreach ($consulta->examenes as $examen)
+        @foreach ($consulta->examenes as $examen)        
             @if ($examen->te_examen == 'L/C')
+            
                 <div class="row" style="margin-bottom: 10px" >
                     <div class="card">
                         <div class="card-header" style="height: 35px">
@@ -85,6 +172,7 @@
                         </div>
                     </div>
                 </div>
+                    
                 
             @else
                 <div class="row" style="margin-bottom: 10px" >
@@ -182,9 +270,10 @@
                                 </div>
                             </div>
                         </div> 
+                        
                 </div>           
             @endif
-        @endforeach
+        @endforeach        
     <div class="row">
         
         @foreach ($consulta->ojos as $keratrometria)
@@ -329,6 +418,8 @@
     </div>
 </div>
 </div>
+@include('consulta.generarCertificado') 
+<script type="text/javascript" src="js/BuscarPaciente.js"></script>
 
 
 

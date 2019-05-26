@@ -12,6 +12,8 @@ use phpDocumentor\Reflection\Types\Object_;
 use GoldenVision\Gv_ojo;
 use GoldenVision\Gv_clente;
 use GoldenVision\Gv_localidad;
+use Illuminate\Support\Facades\App;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class Gv_consultaController extends Controller
 {
@@ -271,12 +273,31 @@ class Gv_consultaController extends Controller
 
     }
     public function obtenerConsulta(Request $request){
-         /*$sintomas=Gv_consulta::find($co_id)->sintomas()->get();
-         $observaciones=Gv_consulta::find($co_id)->caracteristicasCor()->get();
-         $examenes=Gv_consulta::find($co_id)->examenes()->get();
-         $keratrometria=Gv_consulta::find($co_id)->ojos()->get();
-         $lentes=Gv_consulta::find($co_id)->lentes()->get(); */ 
+         
         $consulta=Gv_consulta::find($request->co_id);    
         return view('consulta.verConsulta')->with('consulta',$consulta);
+    }
+    public function obtenerConCer($co_id){
+         
+        $consulta=Gv_consulta::find($co_id); 
+        $examenes=$consulta->examenes;
+        $sucursal=$consulta->sucursal;
+        $paciente= $consulta->paciente;  
+        $usuario=$consulta->usuario;
+        return response()->json([
+            'status'=> 'Información guardada',
+            'consulta' => $consulta,
+            'examenes' => $examenes,
+            'paciente'=> $paciente,
+            'usuario' => $usuario,
+            'sucursal' => $sucursal,
+        ]);
+    }
+    public function imprimirCertificado(Request $request){    
+         $consulta=Gv_consulta::find($request->co_id);
+         $pdf = PDF::loadView('consulta.certificado', ['consulta' => $consulta,'fechaCer' => $request->fechaCer,'descripcion' => $request->_descripcion,'ishihara' => $request->__ishihara,'estructuraOC' => $request->estructuraOC,'reflejosPu' => $request->reflejosPu,'motilidad' => $request->motilidad,'coverte' => $request->coverte,'conclusiones' => $request->conclusiones,'medico' => $request->medico]);
+         $pdf->setPaper('A4', 'portrait');
+         return $pdf->download();
+
     }
 }

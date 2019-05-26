@@ -44,7 +44,8 @@
     </div>
 </div>
 </div>
-</div>   
+</div>  
+@include('consulta.generarCertificado') 
 @endsection
 
 

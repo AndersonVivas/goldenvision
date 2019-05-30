@@ -43,6 +43,14 @@ Route::get('/secretaria',function(){
 //Crear usuario
 Route::post('usuario','Gv_usuarioController@store')->name('usuario');
 Route::get('crearUsuario','Gv_usuarioController@create');
+Route::get('usuarios','Gv_usuarioController@index')->name('usuarios');
+Route::get('activaAdmin/{us_cedula}','Gv_usuarioController@editarAdministrador');
+Route::get('activaOfta/{us_cedula}','Gv_usuarioController@editarOftalmologo');
+Route::get('activaOptom/{us_cedula}','Gv_usuarioController@editarOptometrista');
+Route::get('activaSecre/{us_cedula}','Gv_usuarioController@editarSecretaria');
+Route::get('obtenerUsuario/{us_cedula}','Gv_usuarioController@edit');
+Route::post('actualizarUsuario','Gv_usuarioController@update');
+
 Auth::routes();
 
 //Selects
@@ -65,6 +73,7 @@ Route::get('obtenerPaciente/{pa_id}','Gv_pacienteController@obtenerPaciente');
 Route::get('obtenerConsulta','Gv_consultaController@obtenerConsulta');
 Route::post('generarCertificado','Gv_consultaController@imprimirCertificado');
 Route::get('informacionCer/{co_id}','Gv_consultaController@obtenerConCer');
+Route::get('imprimirConsulta','Gv_consultaController@imprimirConsulta');
 
 //medidas
 Route::get('medidasNuevas','Gv_consultaController@index');

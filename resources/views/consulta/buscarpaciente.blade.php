@@ -1,4 +1,4 @@
-<i class="fas fa-search prefix"></i>                            
+<i class="fas fa-search prefix" style="size: 2px"></i>                            
 <input id="buscarpaciente" class="form-control apparencoutline form-control-sm" type="text" placeholder="Buscar Paciente" onkeyup="buscarPac()" >  
    
 <ul id="lista_pacientes"  class="mdb-autocomplete-wrap">            

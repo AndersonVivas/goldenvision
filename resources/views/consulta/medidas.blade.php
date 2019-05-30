@@ -6,11 +6,9 @@
     <div class="row justify-content-center " style="margin-bottom: 15px" >
         <div class="col-md-11" >
             <div class="row">
-                <div class="card">
-                    <div class="card-header" style="height: 35px">
-                        <small>  RX EN USO</small>
-                    </div>
-                    <div class="card-body">  
+                <div class="card">                    
+                    <div class="card-body">
+                        <h6 class="card-title"><strong><ion-icon name="folder-open"></ion-icon>RX en Uso</strong></h6>  
                     @if ($rxanterior<>null)
                        @foreach ($rxanterior as $ran)
                        @if ($ran->te_examen=='Rx-Final')
@@ -91,9 +89,9 @@
     <div class="row " >
         <div class="col-md-8" >
             <div class="row md-form form-sm">  
-                    <div class="col-md-10 offset-md-1">
-                        <label for="co_motivo">Motivo de Consulta:</label>                 
-                        <input id="co_motivo" name="co_motivo" class="form-control form-control-sm" type="text">
+                    <div class="col-md-10 offset-md-1">              
+                        <input id="co_motivo" onkeyup="mayus(this);" name="co_motivo" class="form-control form-control-sm" type="text">
+                        <label for="co_motivo">Motivo de Consulta:</label>  
                         <span class="invalid-feedback" role="alert" id="errormotivo">
                         <strong id="mensajeanamnesis"></strong>
                         </span> 
@@ -101,18 +99,18 @@
                 </div> 
             </div> 
             <div class="row md-form form-sm">                 
-                <div class="col-md-10 offset-md-1">   
-                <label for="co_anamnesis">Anamnesis:</label>              
-                    <input id="co_anamnesis" name="co_anamnesis" class="form-control form-control-sm" type="text">
+                <div class="col-md-10 offset-md-1">         
+                    <input id="co_anamnesis" onkeyup="mayus(this);" name="co_anamnesis" class="form-control form-control-sm" type="text">
+                    <label for="co_anamnesis">Anamnesis:</label> 
                     <span class="invalid-feedback" role="alert" id="error-apellido">
                         <strong id="mensajeanamnesis"></strong>
                     </span> 
                 </div>
             </div>                  
             <div class="row md-form form-sm ">                                   
-                    <div class="col-md-10 offset-md-1">
-                        <label for="co_ishihara">Test de Colores (ISHIHARA):</label>                 
-                        <input id="co_ishihara" name="co_ishihara" class="form-control form-control-sm" type="text">
+                    <div class="col-md-10 offset-md-1">                                         
+                        <input id="co_ishihara" onkeyup="mayus(this);" name="co_ishihara" class="form-control form-control-sm" type="text">
+                        <label for="co_ishihara">Test de Colores (ISHIHARA):</label>
                         <span class="invalid-feedback" role="alert" id="errorishihara">
                             <strong id="mensajeanamnesis"></strong>
                         </span> 
@@ -122,10 +120,10 @@
         </div>
         <div class="col-md-4">            
             <div class="row" style="margin-top: 40px">
-               <button type="button" data-toggle="modal" data-target="#ccorporal" class="btn btn-outline-primary btn-rounded waves-effect" style="width:250px">OBSERVACION CORPORAL</button> 
+               <button type="button" data-toggle="modal" data-target="#ccorporal" class="btn btn-outline-primary btn-rounded waves-effect" style="width:250px"><ion-icon name="walk"></ion-icon>OBSERVACION CORPORAL</button> 
             </div>
             <div class="row">
-              <button type="button" data-toggle="modal" data-target="#keratrometria" class="btn btn-outline-primary btn-rounded waves-effect" style="width:250px">KERATROMETRIA</button>
+              <button type="button" data-toggle="modal" data-target="#keratrometria" class="btn btn-outline-primary btn-rounded waves-effect" style="width:250px"><ion-icon name="paper"></ion-icon>KERATROMETRIA</button>
             </div>                           
         </div>
     </div>
@@ -133,11 +131,9 @@
     <!-- parte inferior-->
     <div class="row">
         <div class="col-md-3" style="margin-bottom: 10px">            
-            <div class="card">
-                <div class="card-header" style="height: 35px">
-                    <small>Sintomas</small>
-                </div>
+            <div class="card">                
         <div class="card-body">
+        <h5 class="card-title"><strong><ion-icon name="body"></ion-icon>Sintomas</strong></h5>
             <div class="form-check">
                @foreach ($sintomas as $sintoma)
                <input type="checkbox" name="sintomas[]" value={{  $sintoma->si_id }} id={{  $sintoma->si_sintoma }}>
@@ -151,11 +147,9 @@
         
         <div class="col-md-8">             
             <div class="row" style="margin-bottom: 10px" >
-                    <div class="card">
-                            <div class="card-header" style="height: 35px">
-                            <small>RETINOSCOPIA</small>
-                            </div>
-                            <div class="card-body">                       
+                    <div class="card">                            
+                            <div class="card-body"> 
+                                    <h6 class="card-title"><strong><ion-icon name="eye"></ion-icon>RETINOSCOPIA</strong></h6>                      
                                     <div class="row">    
                                         <div class="col-md-2">
                                             <small for="ODesru">ESF:</small> 
@@ -252,10 +246,8 @@
             </div>
             <div class="row" style=" margin-bottom: 10px" >
                     <div class="card">
-                            <div class="card-header" style="height: 35px">
-                            <small>RX-FINAL</small>
-                            </div>
-                            <div class="card-body">                       
+                            <div class="card-body"> 
+                                    <h6 class="card-title"><strong><ion-icon name="eye"></ion-icon>RX-FINAL</strong></h6>                        
                                     <div class="row">    
                                         <div class="col-md-2">
                                             <small for="ODesru">ESF:</small> 
@@ -353,10 +345,8 @@
             <div class="row">
                     <div id="tipoLentes" style="margin-bottom: 15px">
                     <div class="card">
-                    <div class="card-header" style="height: 35px">
-                    <small>Lentes</small>
-                    </div>
-                    <div class="card-body">                       
+                    <div class="card-body">
+                            <h6 class="card-title"><strong><ion-icon name="glasses"></ion-icon>LENTES</strong></h6>                        
                             <div class="row">
                                 <div class="col-md-6">
                                 <div>
@@ -417,14 +407,14 @@
                     <div class="col-md-12" >
                     <div class="row md-form form-sm ">                                   
                             <div class="col-md-11 ">
-                                <label for="co_observaciones">Observaciones:</label>                 
-                                <input id="co_observaciones" name="co_observaciones" class="form-control form-control-sm" type="text">
-                            </div>
+                                 <input id="co_observaciones" onkeyup="mayus(this);" name="co_observaciones" class="form-control form-control-sm" type="text">
+                                 <label for="co_observaciones">Observaciones:</label> 
+                                </div>
                         </div> 
                         <div class="row md-form form-sm">                 
                                 <div class="col-md-11">   
-                                <label for="co_recomendaciones">Recomendaciones:</label>              
-                                    <input id="co_recomendaciones" name="co_recomendaciones" class="form-control form-control-sm" type="text">
+                                   <input id="co_recomendaciones" onkeyup="mayus(this);" name="co_recomendaciones" class="form-control form-control-sm" type="text">
+                                   <label for="co_recomendaciones">Recomendaciones:</label> 
                                 </div>
                         </div>
                         <div class="row form-group form-sm">
@@ -438,7 +428,7 @@
     </div>
     <div class="col-md-4 offset-md-8">
         <div class="row"  >
-       <button type="submit" class="btn btn-primary">Guardar Consulta</button>
+       <button type="submit" class="btn btn-primary"><ion-icon name="save"></ion-icon>Guardar Consulta</button>
         </div>
     </div>
  </form>
@@ -460,12 +450,7 @@
          <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
         <div class="modal-body">                       
               <div class="form-group">
-                    <div  role="alert" id="mensjeCcorporal" class="alert">
-                            <strong id="succesMensaje"></strong>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                            </button>  
-                    </div>       
+                         
                 <select id="_ccorporales"name="ccorporales" class="custom-select form-control-sm " name="su_ciudad"  data-live-search="true" required>
                     <option value="">--Seleccione una característica--</option>                                        
                     @foreach ($ccorporales as $ccorporal)
@@ -482,7 +467,7 @@
                 </span>      
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Terminar</button>
           <button type="button" onclick="AgregarCcorporal()" id='guardarLocalidad'  class="btn btn-primary addLocalidad">Guardar</button>
         </div>
         </form>

@@ -14,17 +14,21 @@
   <link href="css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) 
   <link href="css/style.css" rel="stylesheet">-->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 
+  
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
   <script src="https://unpkg.com/ionicons@4.2.2/dist/ionicons.js"></script>
 
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+
+ 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script><script src="https://unpkg.com/popper.js"></script>
 
-
+<!--
     Scripts
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -34,8 +38,10 @@
 
      Styles
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">-->
+
+    <title>GOLDENVISION-@yield('title')</title>
 </head>
-<body>
+<body >
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
@@ -61,23 +67,26 @@
                             </li>
                             
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->us_nombres }}{{ Auth::user()->us_apellidos }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
+                        @if (Auth::user()->rol->ro_rol='Administrador')
+                        <li class="nav-item">
+                                <a class="nav-link" href="administrador">Inicio</a>
                             </li>                            
+                        <li class="nav-item">
+                            <a class="nav-link " style="hover:red" href="consulta">Consulta</a>
+                        </li>
+                            
+                        @endif
+                            <li class="nav-item">
+                                <a class="nav-link">
+                                    {{ Auth::user()->us_nombres }}{{ Auth::user()->us_apellidos }} <span class="caret"></span>
+                                </a> 
+                            </li> 
+                            <li>
+                                    <button>
+                                     {{ __('Logout') }}
+                                    </button>
+                            </li>  
+
                         @endguest
                     </ul>
                 </div>

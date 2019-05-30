@@ -20,13 +20,14 @@
     </div>
     <div class="card-body"> 
         <form method="get" action="medidasNuevas">            
-            <div class="btn-group" role="group" aria-label="Button group">
+            <div class="btn-group" role="group" aria-label="Button group" style="margin-bottom: 10px">
                   <input id="id_pa"  class="form-control"  type="hidden" name="id_pa">                 
-              <button type="submit" class="btn btn-primary" >Agregar Consulta</button>
+              <button type="submit" class="btn btn-primary" ><ion-icon name="clipboard" style="size: 20px"></ion-icon>Agregar Consulta</button>
             </div>
           </form>
+          
           <div class="table-responsive">
-          <table id="tablaprueba" class="table table-striped table-bordered table-sm" cellspacing="0">
+          <table id="__tablaprueba" class="table table-striped table-bordered table-sm" cellspacing="0">
               <thead>
                 <tr>
                   <th>Fecha de Consulta</th>
@@ -45,7 +46,10 @@
 </div>
 </div>
 </div>  
-@include('consulta.generarCertificado') 
+@include('consulta.generarCertificado')
+
+
+
 @endsection
 
 

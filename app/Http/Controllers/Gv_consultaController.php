@@ -21,6 +21,10 @@ class Gv_consultaController extends Controller
         $request->validate([
             'id_pa' => 'required',            
         ]);
+        if(\Session::exists('ccorporales')){
+            \Session::forget('ccorporales'); } 
+        if(\Session::exists('keratrometria')){
+            \Session::forget('keratrometria');}
         $rufinal=Gv_consulta::where('pa_id',$request->id_pa)
         ->orderBy('co_id', 'desc')
         ->take(1)->get(); 
@@ -91,7 +95,7 @@ class Gv_consultaController extends Controller
         foreach($ccorporales as $ccorporal){ 
             $consulta->caracteristicasCor()->attach($ccorporal->cc_id,['coc_observaion'=>$ccorporal->coc_observaion]);
         }  
-        \Session::flush('ccorporales');                      
+                             
        }    
          
       if(\Session::exists('keratrometria')){
@@ -122,7 +126,7 @@ class Gv_consultaController extends Controller
                 'ke_yo'=>$keratrometria->ke_yo,
                 ]);
         }  
-        \Session::flush('keratrometria');                      
+                         
        } 
        
       
@@ -181,7 +185,7 @@ class Gv_consultaController extends Controller
         'mo_alturaod' => $request->ODalre,
         'mo_alturaoi' => $request->OIalre,
         'mo_aumentar' => $request->aumdisre, 
-    ]);      
+    ]);  
     
     $localidades=Gv_localidad::orderBy('lo_nombre', 'asc')->get();
     return redirect()->route('consulta'); 
@@ -277,13 +281,19 @@ class Gv_consultaController extends Controller
         $consulta=Gv_consulta::find($request->co_id);    
         return view('consulta.verConsulta')->with('consulta',$consulta);
     }
-    public function obtenerConCer($co_id){
-         
+    public function imprimirConsulta(Request $request){         
+        $consulta=Gv_consulta::find($request->co_id); 
+        $pdf = PDF::loadView('consulta.imprimirConsulta', ['consulta' => $consulta]);
+        $pdf->setPaper('A4', 'portrait'); 
+        return $pdf->download();  
+        
+    }
+    public function obtenerConCer($co_id){         
         $consulta=Gv_consulta::find($co_id); 
         $examenes=$consulta->examenes;
         $sucursal=$consulta->sucursal;
         $paciente= $consulta->paciente;  
-        $usuario=$consulta->usuario;
+        $usuario=Auth::user();
         return response()->json([
             'status'=> 'Información guardada',
             'consulta' => $consulta,

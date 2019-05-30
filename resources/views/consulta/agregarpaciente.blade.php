@@ -1,11 +1,13 @@
 <div class="card" >
         <div class="card-header"> Información del Paciente  
-            <button onclick="limpiarFormulario()"  class="btn btn-mdb-color btn-sm" style="float:inline-end" >Limpiar Formulario</button> 
+            <button onclick="limpiarFormulario()"  class="btn btn-mdb-color btn-sm" style="float:inline-end" ><ion-icon name="trash"></ion-icon>
+                Limpiar Formulario</button> 
         </div>
         <div class="card-body"> 
             <form action="guardarPaciente" method="post" >                
                   <input id="pa_registrado" type="hidden" value="no" autofocus>                    
-                    @csrf                               
+                    @csrf 
+                                                    
                 <div class="md-form row" >                                     
                     <div class="col-md-3">                                 
                         <input id="pa_cedula" maxlength="10" name="pa_cedula" class="form-control form-control-sm"  type="number" autofocus>
@@ -40,13 +42,20 @@
                          
                     </div> 
                          
-                    <div class="col-md-3">
-                        <input id="pa_fechanac" name="pa_fechanac" class="form-control form-control-sm" type="date"  pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" required autofocus>
+                    <div class="col-md-2">
+                        <input id="pa_fechanac" name="pa_fechanac"  class="form-control form-control-sm" type="date"  pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" required autofocus>
                         <label for="pa_fechanac" id="lblfecha">Fecha de Nacimiento:</label>   
                         <span class="invalid-feedback" role="alert" id="error-fechanac">
                             <strong id="mensajeFechanac" ></strong>
                             </span>                                   
-                    </div>                                       
+                    </div>  
+                    <div class="col-md-1">
+                        <input id="pa_edad" name="pa_edad" class="form-control form-control-sm" type='text' required disabled>
+                        <label for="pa_edad" id="lbledad">Edad:</label>   
+                        <span class="invalid-feedback" role="alert" id="error-fechanac">
+                            <strong id="mensajeFechanac" ></strong>
+                            </span>                                   
+                    </div>                                        
                            
                     <div class="col-md-3">
                         <input id="pa_correo" onkeyup="mayus(this);" name="pa_correo" class="form-control form-control-sm" type="email">
@@ -146,9 +155,9 @@
         </div>
         <div class="form-group row">
                 <div class="col-md-11 " style="text-align:end">
-                    <button type="button" onclick="EnviarPaciente()"  class="btn btn-primary">
+                    <button type="button" onclick="EnviarPaciente()"  class="btn btn-primary"><ion-icon name="save"></ion-icon>
                         Guardar Información
-                    </button>       
+                    </button>      
                     
                 </div>
         </div>     

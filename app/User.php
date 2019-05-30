@@ -27,5 +27,9 @@ class User extends Authenticatable
    {
        return $this->us_password;
    }
+   public function rol()
+    {
+        return $this->belongsTo('GoldenVision\Gv_rol', 'ro_id');
+    }
     
 }

@@ -1,6 +1,7 @@
 $(document).click(function(){
     $('#lista_pacientes').empty();
-})
+});
+
 
 function buscarPac(){
     //console.log($('#buscarpaciente').val());
@@ -55,6 +56,7 @@ function CargarPaciente(pa_id){
         $("#pa_apellidos").val(res.paciente.pa_apellidos);    
         $("#pa_fechanac").val(res.paciente.pa_fechanac);
         $("#lblcorreo").attr("class","active");
+        calcularedad(res.paciente.pa_fechanac);
         $("#pa_correo").val(res.paciente.pa_correo);
         $("#lbltelefono").attr("class","active");
         $("#pa_telefono").val(res.paciente.pa_telefono);
@@ -66,24 +68,37 @@ function CargarPaciente(pa_id){
         $("#pa_antecedentesf").val(res.paciente.pa_antecedentesf);
         $("#pa_enfamiliares").val(res.paciente.pa_enfamiliares);
         $("#pa_enpersonales").val(res.paciente.pa_enpersonales);
-        $('#tablaprueba tbody').empty();
-        
+        $('#tablaprueba tbody').empty();               
         $.each(res.consultas,function(key,value){ 
             var htmlTags = "<tr data-id="+value.co_id+">"+
         '<td>' + value.co_fecha + '</td>'+        
         '<td>' + value.co_motivo + '</td>'+
         '<td>' + value.co_anamnesis + '</td>'+
         '<td>' + value.co_observaciones + '</td>'+
-        "<td><a href='obtenerConsulta?co_id="+value.co_id+"' class='btn btn-primary'>Ver</a><a class='btn btn-primary' onclick='generar("+value.co_id+")'>Generar Certificado</a></td>"+
+        "<td><a href='obtenerConsulta?co_id="+value.co_id+"' class='btn btn-info btn-sm'><ion-icon name='eye'/>Ver</a><a  style='margin-left:5px;' class='btn btn-success btn-sm' onclick='generar("+value.co_id+")'><ion-icon name='print'></ion-icon>Generar Certificado</a></td>"+
         
       '</tr>';
       
-       $('#tablaprueba tbody').append(htmlTags);
+       $('#__tablaprueba tbody').append(htmlTags);
         });    
             
         });
         
         
+}
+function calcularedad(fechanac){
+  var hoy= new Date();
+        var cumpleanos= new Date(fechanac);
+        var edad= hoy.getFullYear()-cumpleanos.getFullYear();
+        if(hoy.getMonth()==cumpleanos.getMonth() && hoy.getDay()>cumpleanos.getDay()){
+          edad=edad;
+        }else if(hoy.getMonth()>cumpleanos.getMonth()){
+          edad=edad;
+        }else{
+          edad=edad-1;
+        }
+        $("#lbledad").attr("class","active");
+        $("#pa_edad").val(edad+"años");
 }
 function generar(co_id){
   var route='informacionCer/'+co_id;
@@ -100,7 +115,14 @@ function generar(co_id){
       $('#conclusiones').val("NO SE RECOMIENDA EL USO DE LENTES, EL PACIENTE NO PRESENTA PROBLEMAS REFRACTIVOS, TIENE UNA VISION DE 20/20 EN AMBOS OJOS POR LO CUAL SOLO SE RECOMIENDA UN CONTROL CADA AÑO.EL PACIENTE PUEDE REALIZAR TODAS LA ACTIVIDADES.")
       $.each(res.examenes,function(key,value){ 
         if(value.te_examen=='Rx-Final'){
-          var htmlTags= '<tbody><tr>'+
+          var htmlTags= '<thead>'+
+          '<tr>'+
+              '<th></th>'+
+             ' <th><small><strong>AV/L</strong></small></th>'+
+              '<th><small><strong>AV/C</strong></small></th>'+                            
+         ' </tr>  '+                      
+        '</thead> '+
+          '<tbody><tr>'+
           '<td><small><strong>OD</strong></small></td>'+
           '<td><small>'+value.pivot.mo_avlod+'</small></td>'+
           '<td><small></strong>'+value.pivot.mo_avcod+'</small></td>'+

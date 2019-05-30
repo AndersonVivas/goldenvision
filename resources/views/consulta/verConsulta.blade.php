@@ -6,10 +6,9 @@
     <div class="row" >
         <div class="col-md-10 "> 
         <div class="card">
-            <div class="card-header" style="height: 35px">
-                <small>Información general de consulta</small>
-            </div>
+            
             <div class="card-body">
+                    <h6 class="card-title"><strong><ion-icon name="information-circle-outline"></ion-icon>Información General de Consulta</strong></h6>
                 <div class="row">               
                       <div class="col-md-4">
                             <small>Paciente:</small>
@@ -42,10 +41,8 @@
         </div>
         
         <div class="card" style="margin-top: 10px">
-                <div class="card-header" style="height: 35px">
-                    <small>Enfermedades</small>
-                </div>
                 <div class="card-body">
+                    <h6 class="card-title"><strong><ion-icon name="bed"></ion-icon>Enfermedades</strong></h6>
                     <div class="row">               
                           <div class="col-md-12">
                                 <small>Antecedentes Familiares:</small>
@@ -65,26 +62,18 @@
             </div>
     </div>  
     <div class="col-md-2">
-            <form method="get" action="medidasNuevas">            
-               <div class="btn-group" role="group" aria-label="Button group">
-                   <input id="id_pa"  class="form-control"  type="hidden" name="id_pa" value="{{ $consulta->pa_id }}">                 
-                       <button type="submit" class="btn btn-primary" >Agregar Consulta</button>
-                      
-                   </div>
-           </form> 
-           <button class='btn btn-primary' onclick='generar({{ $consulta->co_id }})'>Generar Certificado</button>          
-                      
-       </div>  
+            <a type="submit" href="medidasNuevas?id_pa={{ $consulta->pa_id }}" class="btn btn-primary btn-sm" style="width:183px" ><ion-icon name="clipboard" style="size: 20px"></ion-icon>Agregar Consulta</a>
+           <button class='btn btn btn-success btn-sm' onclick='generar({{ $consulta->co_id }})' style="width:183px"><ion-icon name='print' ></ion-icon>Generar Certificado</button> 
+           <a type="submit" href="imprimirConsulta?co_id={{ $consulta->co_id }}" class="btn btn-info btn-sm" style="width:183px"><ion-icon name="clipboard" ></ion-icon>Imprimir esta Consulta</a>         
+         </div>  
     </div> 
         
 <div class="row" style="margin-top: 10px">
     <!--sintomas-->
     <div class="col-md-4" style="margin-bottom: 10px">            
-        <div class="card">
-            <div class="card-header" style="height: 35px">
-                <small>Sintomas</small>
-            </div>
+        <div class="card">            
             <div class="card-body">
+                    <h6 class="card-title"><strong><ion-icon name="body"></ion-icon>Sintomas Presentados</strong></h6>
                 <table id="sintomas" class="table table-sm">            
                     <tbody>
                         @foreach ($consulta->sintomas as $sintoma)
@@ -95,10 +84,8 @@
             </div>
         </div>
         <div class="card" style="margin-top: 10px">
-            <div class="card-header">
-                <small>Observaciones Corporales</small>
-            </div>
-            <div class="card-body">
+              <div class="card-body">
+                    <h6 class="card-title"><strong><ion-icon name="walk"></ion-icon>Observaciones Corporales</strong></h6>
                 <table class="table table-sm">
                     <thead>
                         <tr>
@@ -116,10 +103,8 @@
             </div>
         </div>
             <div class="card" style="margin-top: 10px">
-                    <div class="card-header" style="height: 35px">
-                                <small>Lentes en Uso</small>
-                    </div>
-                    <div class="card-body"> 
+                     <div class="card-body">
+                        <h6 class="card-title"><strong><ion-icon name="glasses"></ion-icon>Lentes en Uso</strong></h6>
                         @foreach ($consulta->lentes as $lente)
                         <label>Lentes de {{ $lente->lente->le_tipo }}:  {{ $lente->cle_caracteristica }}</label> 
                                             
@@ -135,11 +120,9 @@
             @if ($examen->te_examen == 'L/C')
             
                 <div class="row" style="margin-bottom: 10px" >
-                    <div class="card">
-                        <div class="card-header" style="height: 35px">
-                            <small>{{ $examen->te_examen }} </small>
-                        </div>
-                        <div class="card-body">                       
+                    <div class="card"> 
+                        <div class="card-body"> 
+                                <h6 class="card-title"><strong><ion-icon name="glasses"></ion-icon>{{ $examen->te_examen }}</strong></h6>                      
                             <div class="row">    
                                 <div class="col-md-2">
                                     <small for="ODesru">ESF:</small> 
@@ -176,12 +159,10 @@
                 
             @else
                 <div class="row" style="margin-bottom: 10px" >
-                    <div class="card">
-                        <div class="card-header" style="height: 35px">
-                            <small>{{ $examen->te_examen }} </small>
-                        </div>
-                            <div class="card-body">                       
-                                <div class="row">    
+                    <div class="card">                        
+                            <div class="card-body"> 
+                                    <h6 class="card-title"><strong><ion-icon name="eye"></ion-icon>{{ $examen->te_examen }}</strong></h6>
+                           <div class="row">    
                                     <div class="col-md-2">
                                         <small for="ODesru">ESF:</small> 
                                         <div class="form-group">
@@ -277,13 +258,11 @@
     <div class="row">
         
         @foreach ($consulta->ojos as $keratrometria)
-        <h4>keratometria</h4>   
+        <h4>Keratometria</h4>   
         
-    <div class="card">
-            <div class="card-header" >
-                <h5>Ojo:{{ $keratrometria->oj_tipo }}</h5>
-            </div>
-            <div class="card-body">                
+    <div class="card">            
+            <div class="card-body">
+                    <h6 class="card-title"><strong><ion-icon name="eye"></ion-icon>{{ $keratrometria->oj_tipo }}</strong></h6>                                        
                     <div class="row">
                             <div class="col-md-6">
                                <div class="row" style="margin-bottom: 5px">

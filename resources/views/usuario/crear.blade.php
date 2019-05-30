@@ -6,9 +6,9 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Registro de Usuario</div>
-                <div class="card-body">
-                    <form  action="usuario"  method="post" autocomplete="off">                        
-                        @csrf
+                <form  action="usuario"  method="post" autocomplete="off">
+                <div class="card-body">                   
+                    @csrf
                     <div class="form-group row">
                         <label for="rol_id" class="col-md-4 col-form-label text-md-right">Tipo de usuario</label>      
                         <div class="col-md-6">                                                         

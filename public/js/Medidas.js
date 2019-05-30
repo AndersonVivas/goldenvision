@@ -24,7 +24,8 @@ function AgregarCcorporal(){
                 $("#coc_observaion").attr("class","form-control form-control-sm");
                 $("#_ccorporales").attr("class","custom-select form-control-sm"); 
                 $("#coc_observaion").val("");
-                $("#_ccorporales").val(null);    
+                $("#_ccorporales").val(null);
+                alert("Característica Agregada");    
                 $("#succesMensaje").text("Característica Agregada");
                 $("#mensjeCcorporal").addClass("alert alert-success alert-dismissible fade show");
             }
@@ -117,8 +118,7 @@ function AgregarKeratrometria(){
                 $("#_oj_id").addClass("is-invalid");               
              
         }else if(msj.status==200){
-            $("#succesMensajek").text("Información guardad");
-            $("#mensjekeratrometria").addClass("alert-success alert-dismissible fade show");
+            alert("Información guardada");            
             var ke_k1= $("#ke_k1").val("");
             var ke_grk1= $("#ke_grk1").val("");
             var ke_k2= $("#ke_k2").val("");

@@ -98,7 +98,7 @@ EL PACIENTE PUEDE REALIZAR TODAS LA ACTIVIDADES.
                   </div>
                   <div class="col-md-11 " style="text-align:end; margin-top: 30px">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                      <button type="submit" class="btn btn-primary">
+                      <button type="submit" class="btn btn-primary"><ion-icon name="print"></ion-icon>
                           Generar Certificado
                       </button>
                   </div>

@@ -95,7 +95,7 @@ class Gv_pacienteController extends Controller
      }
      public function obtenerPaciente($pa_id){
          $paciente=Gv_paciente::find($pa_id);  
-         $consultas=Gv_consulta::where('pa_id',$pa_id)->orderBy('co_id','desc')->get();       
+         $consultas=Gv_consulta::where('pa_id',$pa_id)->orderBy('co_id','desc')->take(10)->get();       
          return response()->json([
             'paciente'=> $paciente,
             'consultas'=> $consultas]

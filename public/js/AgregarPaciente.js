@@ -61,7 +61,8 @@ function EnviarPaciente(){
                $("#pa_registrado").val('no');
             }
             $("#pa_id").val(msj.pa_id); 
-            $("#id_pa").val(msj.pa_id);   
+            $("#id_pa").val(msj.pa_id);
+            calcularedad(pa_fechanac);   
             alert("Paciente guardado correctamente");            
            }, 
         error: function(msj){          
@@ -119,6 +120,20 @@ function EnviarPaciente(){
         }       
         });
 }
+function calcularedad(fechanac){
+   var hoy= new Date();
+         var cumpleanos= new Date(fechanac);
+         var edad= hoy.getFullYear()-cumpleanos.getFullYear();
+         if(hoy.getMonth()==cumpleanos.getMonth() && hoy.getDay()>cumpleanos.getDay()){
+           edad=edad;
+         }else if(hoy.getMonth()>cumpleanos.getMonth()){
+           edad=edad;
+         }else{
+           edad=edad-1;
+         }
+         $("#lbledad").attr("class","active");
+         $("#pa_edad").val(edad+"años");
+ }
 function limpiarFormulario(){
 $("#pa_registrado").val('no'); 
 $("#pa_cedula").val('');   
@@ -135,6 +150,7 @@ $("#pa_enfamiliares").val('NINGUNA');
 $("#pa_enpersonales").val('NINGUNA');
 $("#pa_id").val(''); 
 $("#id_pa").val('');
+$("#pa_edad").val("");
 $("#buscarpaciente").val('');
 $('#tablaprueba tbody').empty();
 }

@@ -37,7 +37,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
-					<a  class="logo"><img src="images/gv11.png" alt="Third slide"></a>
+					<a  class="logo"><img src="images2/gvf.jpg" alt="Third slide" width="250" height="250"></a>
 				</div>
 				<div class="col-md-6 text-right">
 						<span>Ó P T I C A</span></br>
@@ -94,7 +94,7 @@
 							<div class="info">By <a href="#">Danny</a> on April 14, 2015</div>
 						</div>
 						<div class="art-content">
-							<img src="images/yes.jpg" />
+							<img src="images/gv4.jpg" />
 							<div class="excerpt"><p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum exercitation ullamco laboris nisi ut aliquip.</p></div>
 							<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
 							 sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Consetetur sadipscing elitr, sed diam nonumy eirmod tempor 

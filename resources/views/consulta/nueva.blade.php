@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid" style="margin-top: 0px">    
-    <div class="md-form row offset-md-1" >                                          
+    <div class="row offset-md-1" >                                          
       <div class="col-md-6" >
           @include('consulta.buscarpaciente')
       </div>           
@@ -22,24 +22,12 @@
         <form method="get" action="medidasNuevas">            
             <div class="btn-group" role="group" aria-label="Button group" style="margin-bottom: 10px">
                   <input id="id_pa"  class="form-control"  type="hidden" name="id_pa">                 
-              <button type="submit" class="btn btn-primary" ><ion-icon name="clipboard" style="size: 20px"></ion-icon>Agregar Consulta</button>
+              <button type="submit" class="btn btn-primary" style="background: #2E519f;color: white" ><ion-icon name="clipboard" style="size: 20px"></ion-icon>Agregar Consulta</button>
             </div>
           </form>
           
-          <div class="table-responsive">
-          <table id="__tablaprueba" class="table table-striped table-bordered table-sm" cellspacing="0">
-              <thead>
-                <tr>
-                  <th>Fecha de Consulta</th>
-                  <th>Motivo de Consulta</th>
-                  <th>Amnanesis de Consulta</th>
-                  <th>Observacion de Consulta</th>
-                  <th>Opciones</th>
-                </tr>
-              </thead>
-              <tbody>          
-              </tbody>
-            </table>
+          <div class="table-responsive" id="__consultas">
+         
 
           </div>
     </div>

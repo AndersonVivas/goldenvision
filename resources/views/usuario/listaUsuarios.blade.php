@@ -10,17 +10,17 @@ USUARIOS
       <h4><strong><ion-icon name="contacts"></ion-icon>Usuarios</strong></h4>
     </div>
     <div class="col-md-8" style="text-align: end"> 
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarUsuario" ><ion-icon name="person-add"></ion-icon>Agregar Usuario</button>         
+        <button type="button" class="btn btn-md" style="background: #2E519f;color: white" data-toggle="modal" data-target="#agregarUsuario" ><ion-icon name="person-add"></ion-icon>Agregar Usuario</button>         
       
     </div>
       
   </div>    
         <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#_administradores" role="tab" aria-controls="nav-home" aria-selected="true">Administradores</a>
-                  <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#_oftalmologos" role="tab" aria-controls="nav-profile" aria-selected="false">Oftalmólogos</a>
-                  <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#_optometristas" role="tab" aria-controls="nav-contact" aria-selected="false">Optometristas</a>
-                  <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#_secretarias" role="tab" aria-controls="nav-contact" aria-selected="false">Secretaria</a>
+                  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#_administradores" role="tab" aria-controls="nav-home" aria-selected="true" style="color:#2E519f">Administradores</a>
+                  <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#_oftalmologos" role="tab" aria-controls="nav-profile" aria-selected="false" style="color:#2E519f">Oftalmólogos</a>
+                  <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#_optometristas" role="tab" aria-controls="nav-contact" aria-selected="false" style="color:#2E519f">Optometristas</a>
+                  <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#_secretarias" role="tab" aria-controls="nav-contact" aria-selected="false" style="color:#2E519f">Secretaria</a>
                 </div>
               </nav>
               <div class="tab-content" id="nav-tabContent">

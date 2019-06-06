@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" style="margin: 0">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,24 +8,24 @@
     <title>{{ $consulta->paciente->pa_nombres }}{{ $consulta->paciente->pa_apellidos }}</title>
 </head>
 <body style="background-image: url(../images/certificado.png);padding-top: 0cm;padding-left: 0cm;padding-right: 0cm; padding-bottom: 0cm;margin-bottom: 0cm" >
-    <div class="row">
-        <div class="col-12" style="background: #4f66a6"> 
-    </div>
-    
+       
         
     </div>
     <div class="row"  >
-        <div class="col-12" style="text-align:right;margin-top: 30px">
+        <div class="col-12" style="text-align:right;margin-top: 30px;margin-right: 30px;margin-left: 30px">
                 <small><strong >{{  $fechaCer }}</strong></small>
         </div>
     </div>
     <div class="row">
-        <div class="col-12" style="margin-top: 50px">
+        <div class="col-12" style="margin-top: 50px;margin-left: 30px;margin-right: 30px">
             <p style="text-align: justify"><small>{{ $descripcion }}</small> </p>
         </div>
     </div>
     <div class="row">
-            <small><strong >AGUDEZA VISUAL</strong></small>
+        <div class="col" style="margin-left: 30px">
+                <small ><strong >AGUDEZA VISUAL</strong></small>
+        </div>
+            
     </div>
     <div class="col-10" style="margin-top: 10px">
         
@@ -89,45 +89,45 @@
         </div>
     </div>
     <div class="row">
-            <div class="col-12" >
+            <div class="col-12" style="margin-left:30px;margin-right: 30px" >
                     <small><strong >TEST DE COLORES (ISHIHARA)</strong></small>
                 <p style="text-align: justify"><small>{{ $ishihara }}</small> </p>
             </div>
     </div>
     <div class="row">
-            <div class="col-12" >
+            <div class="col-12" style="margin-left:30px;margin-right: 30px" >
                     <small><strong >ESTRUCTURA OCULAR</strong></small>
                 <p style="text-align: justify"><small>{{ $estructuraOC }}</small> </p>
             </div>
     </div>
     <div class="row">
-            <div class="col-12" >
+            <div class="col-12"style="margin-left:30px;margin-right: 30px"  >
                     <small><strong >REFLEJOS PUPILARES Y PUPILAS</strong></small>
                 <p style="text-align: justify"><small>{{ $reflejosPu }}</small> </p>
             </div>
     </div>
     <div class="row">
-            <div class="col-12" >
+            <div class="col-12"  style="margin-left:30px;margin-right: 30px" >
                 <small><strong >MOTILIDAD ESTRAOCULAR</strong></small>
                 <p style="text-align: justify"><small>{{ $motilidad }}</small> </p>
             </div>
             
     </div>
     <div class="row"> 
-    <div class="col-12" >
+    <div class="col-12" style="margin-left:30px;margin-right: 30px"  >
             <small><strong >Cover test (D. El.)</strong></small>
             <p style="text-align: justify"><small>{{ $coverte }}</small> </p>
         </div>
     </div>
 <div class="row"> 
-    <div class="col-12" >
+    <div class="col-12" style="margin-left:30px;margin-right: 30px"  >
             <small><strong >CONCLUSIONES</strong></small>
         <p style="text-align: justify"><small>{{ $conclusiones }}</small> </p>
     </div>
 </div>
 
-<div class="row">         
-        <div class="col-6" style="margin-top: 70px" >
+<div class="row" >         
+        <div class="col-6" style="margin-top: 70px; margin-left:30px;margin-right: 30px" >
                 <small>___________________________________</small>
             <p style="text-align: justify"><small>{{ $medico }}</small> </p>
         </div>

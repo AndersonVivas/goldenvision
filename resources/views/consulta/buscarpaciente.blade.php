@@ -1,9 +1,15 @@
-<i class="fas fa-search prefix" style="size: 2px"></i>                            
-<input id="buscarpaciente" class="form-control apparencoutline form-control-sm" type="text" placeholder="Buscar Paciente" onkeyup="buscarPac()" >  
-   
-<ul id="lista_pacientes"  class="mdb-autocomplete-wrap">            
-</ul>  
-</div> 
+<div class="form-group"> 
+        <div class="inputIcon"> 
+                <input id="buscarpaciente" class="form-control " style="border-radius: 20px" type="text" placeholder="Buscar Paciente" onkeyup="buscarPac(this)" >
+                <ul id="lista_pacientes"  class="mdb-autocomplete-wrap">            
+                </ul>  
+                <ion-icon name="search" aria-hidden="true"></ion-icon>
+                                </div>                         
+
+</div>   
+
+
+
  
 
 <script type="text/javascript" src="js/jquery.min.js"></script>

@@ -19,6 +19,7 @@ class Kernel extends HttpKernel
         \GoldenVision\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \GoldenVision\Http\Middleware\TrustProxies::class,
+        
     ];
 
     /**
@@ -35,6 +36,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \GoldenVision\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            
         ],
 
         'api' => [
@@ -59,5 +61,10 @@ class Kernel extends HttpKernel
         'guest' => \GoldenVision\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'admin' => \GoldenVision\Http\Middleware\AdminMiddleware::class,
+        'adofop' => \GoldenVision\Http\Middleware\OftMiddleware::class,
+        'adofopse' => \GoldenVision\Http\Middleware\OfopseadMiddleware::class,
+        'secre' => \GoldenVision\Http\Middleware\SecreMiddleware::class,
+        'opt' => \GoldenVision\Http\Middleware\OptMiddleware::class,
     ];
 }

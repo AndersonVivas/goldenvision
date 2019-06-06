@@ -10,6 +10,19 @@
     padding-left: 0;
     background: #fff;
 }
-.apparencoutline{
-    outline: #007bff;
+.inputIcon input{
+    border-radius: 20px;
+    
+}
+.inputIcon {
+    position: relative;
+}
+.inputIcon ion-icon{
+    position: absolute;
+    left: 94%;
+    right: 10px;
+    top: 4px;
+    font-size: 30px;
+    color: #aaaaaa;
+    
 }

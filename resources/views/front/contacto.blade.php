@@ -56,11 +56,12 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
-					<a href="#" class="logo"><img src="images/gv11.png" alt="Third slide"></a>
+					<a href="#" class="logo"><img src="images2/logovision.png" alt="Third slide" width="250" height="250"></a>
 				</div>
 				<div class="col-md-6 text-right">
 						<span>Llamar:</span></br>
-						<strong class="contact-phone"><i class="fa fa-phone"></i> (06) 264-1697</strong>
+						<strong class="contact-phone"><i class="fa fa-phone"></i> 0996510983</strong></br>
+						<strong class="contact-phone"><i class="fa fa-phone"></i> 0984580658</strong></br>
 					</div>
 	
 			</div>
@@ -88,9 +89,9 @@
                         <li>
                                 <a class="page-scroll" href="Index">Inicio</a>
                             </li>
-                            <li>
+                            	<!-- <li>
                                 <a class="page-scroll" href="nosotros">Nosotros</a>
-                            </li>
+                            </li>-->
                             <li>
                                 <a class="page-scroll" href="contacto">Contáctanos</a>
                             </li>
@@ -98,6 +99,9 @@
 			</div>
 		</div>
 	</nav>
+	<div style=" background-color: #b49b3e; height: 7px; border: 30px; border-radius: 2px "  >
+		<!-- <a ><img src="images2/golden5.png" width="1900" height="5"></a>   -->
+	</div>
 		
 	<a id='backTop'>Back To Top</a>
 	<!-- /Back To Top -->
@@ -115,20 +119,22 @@
 						</div>
 						<div class="row">
 							<div class='embed-container maps'>
-									<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15958.978330834578!2d-78.1203541!3d0.3483424!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7cc5cb1d92fb44f6!2sGolden+Visi%C3%B3n+Optica!5e0!3m2!1ses!2sec!4v1556685899015!5m2!1ses!2sec" width="1120" height="450" frameborder="0" style="border:0" ></iframe>
-								</div>
+								
+								
+
+								<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15958.978330834578!2d-78.1203541!3d0.3483424!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7cc5cb1d92fb44f6!2sGolden+Visi%C3%B3n+Optica!5e0!3m2!1ses!2sec!4v1556685899015!5m2!1ses!2sec" width="550" height="225" frameborder="0" style="border:10" ></iframe>
+								<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7873957570678!2d-78.26525144944685!3d0.22558659983460744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e2a149bbe481b3f%3A0xeaa10eddc60645a!2sGoldenvision+Otavalo+optica!5e0!3m2!1ses-419!2sec!4v1558730127104!5m2!1ses-419!2sec" width="550" height="225" frameborder="0" style="border:0"></iframe>
+							</div>
 							<div class="col-md-4 box-item">
 								<h3>Información: </h3>
-								<span>GOLDEN VISION CUENTA CON VARIOS LUGARES DE ATENCIÓN </span><br> <br>
+								<span>Golden Vision cuenta con varios lugares de atención:  </span><br> <br>
 								<p>Golden Vision - Ibarra<br>
 									Velasco y Sanchez y Cifuentes Edificio La Previsora<br>
 									(06) 264-1697</p>
 								<p>Golden Vision - Otavalo<br>
 									Abdon Calderón y Bolívar<br>
 									062-928-440</p>
-								<p>Golden Vision - Atuntaqui<br>
-									General Enriquez y Espejo<br>
-									098-222-8990</p>
+								
 								<p>Golden Vision - Cotacachi<br>
 										General Enriquez y Espejo<br>
 										098-222-8990</p>		

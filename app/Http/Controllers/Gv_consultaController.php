@@ -14,6 +14,8 @@ use GoldenVision\Gv_clente;
 use GoldenVision\Gv_localidad;
 use Illuminate\Support\Facades\App;
 use Barryvdh\DomPDF\Facade as PDF;
+use GoldenVision\Gv_sucursal;
+use GoldenVision\Gv_usuario;
 
 class Gv_consultaController extends Controller
 {
@@ -276,10 +278,13 @@ class Gv_consultaController extends Controller
         ]); 
 
     }
-    public function obtenerConsulta(Request $request){
-         
+    public function obtenerConsulta(Request $request){         
         $consulta=Gv_consulta::find($request->co_id);    
         return view('consulta.verConsulta')->with('consulta',$consulta);
+    }
+    public function obtenerSecreConsulta($co_id){
+        $consulta=Gv_consulta::find($co_id);  
+        return response()->json(view('secretaria.verConsulta')->with('consulta',$consulta)->render());
     }
     public function imprimirConsulta(Request $request){         
         $consulta=Gv_consulta::find($request->co_id); 
@@ -307,7 +312,54 @@ class Gv_consultaController extends Controller
          $consulta=Gv_consulta::find($request->co_id);
          $pdf = PDF::loadView('consulta.certificado', ['consulta' => $consulta,'fechaCer' => $request->fechaCer,'descripcion' => $request->_descripcion,'ishihara' => $request->__ishihara,'estructuraOC' => $request->estructuraOC,'reflejosPu' => $request->reflejosPu,'motilidad' => $request->motilidad,'coverte' => $request->coverte,'conclusiones' => $request->conclusiones,'medico' => $request->medico]);
          $pdf->setPaper('A4', 'portrait');
-         return $pdf->download();
+         return $pdf->download($consulta->paciente->pa_nombres . $consulta->paciente->pa_apellidos.'.pdf');
 
+    }
+    public function reportes(){
+        $sucursales=Gv_sucursal::orderBy('su_ciudad','asc')->get();
+        $doctores=Gv_usuario::where('ro_id',1)->orWhere('ro_id',2)->orWhere('ro_id',3)->orderBy('us_apellidos','asc')->get();
+        return view('consulta.reportes')
+        ->with('sucursales',$sucursales)
+        ->with('doctores',$doctores);
+    }
+    public function generarTuReporte(Request $request){
+        $usuario=Auth::user();
+        $consultas=Gv_consulta::where('us_cedula',$usuario->us_cedula)->where('co_fecha','>=',$request->inicio)->where('co_fecha','<=',$request->final)->orderBy('co_fecha','desc')->get();
+        $pdf = PDF::loadView('consulta.tureporte',['consultas'=>$consultas,'usuario'=>$usuario,'fecha_inicio'=>$request->inicio,'fecha_fin'=>$request->final]);
+        $pdf->setPaper('A4', 'portrait');        
+       return  $pdf->download($usuario->us_cedula);
+    }
+    public function generarTodosReporte(Request $request){
+        $consultas=Gv_consulta::where('co_fecha','>=',$request->inicio)->where('co_fecha','<=',$request->final)->orderBy('co_fecha','desc')->get();
+        $pdf = PDF::loadView('consulta.todoreporte',['consultas'=>$consultas,'fecha_inicio'=>$request->inicio,'fecha_fin'=>$request->final]);
+        $pdf->setPaper('A4', 'portrait');        
+       return  $pdf->download();
+    }
+    public function generarOpOf(Request $request){   
+        $usuario=Gv_usuario::find($request->us_cedula);     
+        $consultas=Gv_consulta::where('us_cedula',$request->us_cedula)->where('co_fecha','>=',$request->inicio)->where('co_fecha','<=',$request->final)->orderBy('co_fecha','desc')->get();
+        $pdf = PDF::loadView('consulta.reportesopof',['consultas'=>$consultas,'usuario'=>$usuario,'fecha_inicio'=>$request->inicio,'fecha_fin'=>$request->final]);
+        $pdf->setPaper('A4', 'portrait');        
+       return  $pdf->download($request->us_cedula);
+    }
+    public function generarSucursal(Request $request){   
+        $sucursal=Gv_sucursal::find($request->su_id);     
+        $consultas=Gv_consulta::where('su_id',$request->su_id)->where('co_fecha','>=',$request->inicio)->where('co_fecha','<=',$request->final)->orderBy('co_fecha','desc')->get();
+        $pdf = PDF::loadView('consulta.reportessucu',['consultas'=>$consultas,'sucursal'=>$sucursal,'fecha_inicio'=>$request->inicio,'fecha_fin'=>$request->final]);
+        $pdf->setPaper('A4', 'portrait');        
+       return  $pdf->download($sucursal->su_ciudad);
+    }
+    public function proximasConsultas(Request $request){
+        $sucursal=\Session::get('id_sucursal');
+       $consultas=Gv_consulta::where('pc_fecha',$request->fecha)->where('pc_verificado',0)->where('su_id',$sucursal)->orderBy('co_fecha','desc')->get();
+        return view('secretaria.proximasConsultas')->with('consultas',$consultas);
+    }
+    public function verificarProximas($co_id){
+        $consulta=Gv_consulta::find($co_id);
+        $consulta->pc_verificado=1;
+        $consulta->save();
+        $sucursal=\Session::get('id_sucursal');
+        $consultas=Gv_consulta::where('pc_fecha',$consulta->pc_fecha)->where('pc_verificado',0)->where('su_id',$sucursal)->orderBy('co_fecha','desc')->get();
+        return response()->json(view('secretaria.listaProximas')->with('consultas',$consultas)->render());
     }
 }

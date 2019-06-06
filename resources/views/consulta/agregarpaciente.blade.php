@@ -1,16 +1,19 @@
-<div class="card" >
-        <div class="card-header"> Información del Paciente  
+<div class="card"  >
+        <div class="card-header" style="color: #2E519f; "><strong> Información del Paciente </strong>
             <button onclick="limpiarFormulario()"  class="btn btn-mdb-color btn-sm" style="float:inline-end" ><ion-icon name="trash"></ion-icon>
                 Limpiar Formulario</button> 
         </div>
         <div class="card-body"> 
+               <!-- background:#e3f0f4<h6 class="card-title"  style="color: #2E519f"><strong><ion-icon name="eye"></ion-icon>Información del Paciente  
+                    <button onclick="limpiarFormulario()"  class="btn btn-mdb-color btn-sm" style="float:inline-end" ><ion-icon name="trash"></ion-icon>
+                        Limpiar Formulario</button></strong></h6>-->
             <form action="guardarPaciente" method="post" >                
                   <input id="pa_registrado" type="hidden" value="no" autofocus>                    
                     @csrf 
                                                     
                 <div class="md-form row" >                                     
                     <div class="col-md-3">                                 
-                        <input id="pa_cedula" maxlength="10" name="pa_cedula" class="form-control form-control-sm"  type="number" autofocus>
+                        <input id="pa_cedula" style="outline-color: brown" maxlength="10" name="pa_cedula" class="form-control form-control-sm"  type="number" autofocus>
                         <label for="pa_cedula" id="lblcedula">Cédula:</label>   
                         <span class="invalid-feedback" role="alert">
                             <strong id="mensajeCedula"></strong>
@@ -155,7 +158,7 @@
         </div>
         <div class="form-group row">
                 <div class="col-md-11 " style="text-align:end">
-                    <button type="button" onclick="EnviarPaciente()"  class="btn btn-primary"><ion-icon name="save"></ion-icon>
+                    <button type="button"  onclick="EnviarPaciente()"  class="btn " style="background: #2E519f;color: white"><ion-icon name="save"></ion-icon>
                         Guardar Información
                     </button>      
                     

@@ -11,7 +11,6 @@ use GoldenVision\Gv_consulta;
 class Gv_pacienteController extends Controller
 {
      public function index(){ 
-
         $localidades=Gv_localidad::orderBy('lo_nombre', 'asc')->get();
          return view('consulta.nueva')
          ->with('localidades',$localidades);
@@ -98,7 +97,19 @@ class Gv_pacienteController extends Controller
          $consultas=Gv_consulta::where('pa_id',$pa_id)->orderBy('co_id','desc')->take(10)->get();       
          return response()->json([
             'paciente'=> $paciente,
-            'consultas'=> $consultas]
+            'consultas'=> view('consulta.consultas')->with('consultas',$consultas)->render()]
         );
      }
+     public function obtenerPacienteSecre($pa_id){        
+        $consultas=Gv_consulta::where('pa_id',$pa_id)->orderBy('co_id','desc')->get();       
+        return response()->json([           
+           'consultas'=> view('secretaria.listaConsultas')->with('consultas',$consultas)->render()]
+       );
+    }
+    public function agregarPacienteS(){
+        $localidades=Gv_localidad::orderBy('lo_nombre', 'asc')->get();
+         return view('secretaria.agregarPaciente')
+         ->with('localidades',$localidades);
+    }
+     
 }

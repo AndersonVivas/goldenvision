@@ -2,12 +2,13 @@
 @section('title','Administrador') 
 @section('content' )
 <div class="container" style="height:100%">
-    <div class="row align-items-center" style="height:100%" >
+    <div class="row justify-content-md-center" style="height:100%" >
 <div class="col-sm-12  col-lg-4 col-xl-3" style="margin-top:10px" >
     <div class="card card-cascade wider">
-        <div class="view view-cascade overlay">         
-          <img src="images/consultas.png" class="card-img-top" style="animation: down-ani 20s linear infinete"/>                   
-          <a href="consulta">
+        <div class="view view-cascade overlay"> 
+            <ion-icon name="contacts" aria-hidden="true" style="font-size: 200px;color: #b49b3e;opacity: 0.8"></ion-icon >      
+                 
+         <a href="consulta">
               <div class="mask rgba-white-slight"></div>
         </a>
         </div>
@@ -20,8 +21,8 @@
       </div><div class="col-sm-12  col-lg-4 col-xl-3" style="margin-top:5px">
           <div class="card card-cascade wider">
               <div class="view view-cascade overlay">         
-                <img src="images/usuarios.png" class="card-img-top" style="animation: down-ani 20s linear infinete"/>                   
-                <a href="consulta">
+                  <ion-icon name="person" aria-hidden="true" style="font-size: 200px;color: #b49b3e;opacity: 0.8"></ion-icon >      
+                    <a href="usuarios">
                     <div class="mask rgba-white-slight"></div>
               </a>
               </div>
@@ -32,20 +33,11 @@
               </div>
             </div>
     
-      </div><div class="col-sm-12 col-lg-4 col-xl-3" style="margin-top:5px">
-      <div class="card" >
-       
-        <div class="card-body">
-          <h5 class="card-title">Secretaria</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <button class="btn btn-primary" type="button">Text</button>
-        </div>
-      </div>
       </div><div class="col-sm-12  col-lg-4 col-xl-3" style="margin-top:5px">
           <div class="card card-cascade wider">
               <div class="view view-cascade overlay">         
-                <img src="images/reportes.png" class="card-img-top" style="animation: down-ani 20s linear infinete"/>                   
-                <a href="consulta">
+                  <ion-icon name="copy" aria-hidden="true" style="font-size: 200px;color: #b49b3e;opacity: 0.8"></ion-icon >      
+                    <a href="reportes">
                     <div class="mask rgba-white-slight"></div>
               </a>
               </div>

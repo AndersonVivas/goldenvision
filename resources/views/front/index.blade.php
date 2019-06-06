@@ -34,14 +34,14 @@
 	
 	<!-- /////////////////////////////////////////Top -->
 	<header>
-		<div class="container">
+		<div class="container" >
 			<div class="row">
 				<div class="col-md-6">
-					<a ><img src="images/gv11.png" alt="Third slide"></a>
+					<a ><img src="images2/logovision.png" alt="Third slide" width="250" height="250"></a>
 				</div>
 				<div class="col-md-6 text-right">
 					<span>Ó P T I C A</span></br>
-					<strong class="contact-phone"><i class=""></i> GOLDEN VISION</strong>
+					<strong class="contact-phone"><i class=""></i> GOLDEN VISION </strong>
 				</div>
 
 			</div>
@@ -69,22 +69,29 @@
                         <li>
                                 <a class="page-scroll" href="Index">Inicio</a>
                             </li>
-                            <li>
+                           	<!-- <li>
                                 <a class="page-scroll" href="nosotros">Nosotros</a>
-                            </li>
+                            </li>-->
                             <li>
                                 <a class="page-scroll" href="contacto">Contáctanos</a>
                             </li>
 				</ul>
 			</div>
+
 		</div>
+
+
 	</nav>
 	
-	<div class="slide" >
-		<div class="container">
-			<div class="row">
+	<div style=" background-color: #b49b3e; height: 7px; border: 30px; border-radius: 2px "  >
+		<!-- <a ><img src="images2/golden5.png" width="1900" height="5"></a>   -->
+	</div>
+	
+	<div class="slide"  >
+		<div class="container" >
+			<div class="row" >
 				<!-- Carousel -->
-				<div id="carousel-example-generic" class="carousel slide box-shadow" data-ride="carousel" >
+				<div id="carousel-example-generic" class="carousel slide box-shadow" data-ride="carousel">
 					<!-- Indicators -->
 					<ol class="carousel-indicators">
 						<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -94,19 +101,19 @@
 					<!-- Wrapper for slides -->
 					<div class="carousel-inner">
 						<div class="item active">
-							<img src="images/gv4.jpg" alt="First slide">
+							<img src="images2/yes.1.png" alt="First slide">
 							<!-- Static Header -->
 						</div>
 						<div class="item">
-							<img src="images/gv1.jpg" alt="Thirth slide">
+							<img src="images2/gv1.1.png" alt="Thirth slide">
 							<!-- Static Header -->
 						</div>
 						<div class="item">
-							<img src="images/doc.jpg" alt="Second slide">
+							<img src="images2/doc.1.png" alt="Second slide">
 							<!-- Static Header -->
 						</div>
 						<div class="item">
-							<img src="images/gv9.jpg" alt="Thirth slide">
+							<img src="images2/gv9.1.png" alt="Thirth slide">
 							<!-- Static Header -->
 						</div>
 						
@@ -135,7 +142,7 @@
 			<div class="row">
 				<div class="col-sm-4 ">
 					<div class="service">
-						<a href="#"><img src="images/servicios.png" title="icon-name"></a>
+						<a href="#"><img src="images2/servicios.png" title="icon-name"></a>
 						<h3>COMPROMISO CON UN SERVICIO DE CALIDAD Y EFICIENCIA</h3>
 						<p>Brindamos servicios de Terapias Visuales, Examen Visual Computarizado, Lentes de Contacto, Lentes Porgresivos, Asesoría en Cirugías Laser, Accesrorios para todo tipo de Lentes, Arreglo y Reparación para sus Lentes y Emisión de Certificados Visuales.</p>
 						<!--<a class="btn btn-2 btn-sm" href="#">Read More</a>  -->
@@ -143,7 +150,7 @@
 				</div>
 				<div class="col-sm-4 ">
 					<div class="service">
-						<a href="#"><img src="images/equipos.png" title="icon-name"></a>
+						<a href="#"><img src="images2/equipos.png" title="icon-name"></a>
 						<h3>MODERNOS EQUIPOS PARA CUIDAR TU SALUD VISUAL</h3>
 						<p>Contamos con los mejores y más modernos equipos tecnológicos,  ofrecemos una amplia variedad de marcas del país que cuentan con garantía de fábrica.</p>
 						<!--<a class="btn btn-2 btn-sm" href="#">Read More</a> -->
@@ -151,7 +158,7 @@
 				</div>
 				<div class="col-sm-4 ">
 					<div class="service">
-						<a href="#"><img src="images/comida.png" title="icon-name"></a>
+						<a href="#"><img src="images2/comida.png" title="icon-name"></a>
 						<h3>CONSEJOS ÚTILES</h3>
 						<p>Mantén las pantallas de ordenador y dispositivos móviles a una distancia adecuada </p>
 						<p>Consumir alimentos verdes tales como,brócoli, calabacín, guisantes y coles de Bruselas.</p>
@@ -180,7 +187,7 @@
 				</div>
 				<div class="row item">
 					<div class="col-md-4 text-center">
-						<img src="images/jonas.jpg" class="testimonials img-circle" alt="">
+						<img src="images2/jonas.jpg" class="testimonials img-circle" alt="">
 					</div>
 					<div class="col-md-8">
 						<div class="box-comment">

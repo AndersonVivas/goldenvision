@@ -1,7 +1,57 @@
 $(document).click(function(){
     $('#lista_pacientes').empty();
+    $('#__lista_pacientes').empty();
 });
+function buscarPacSecre(){
+  //console.log($('#buscarpaciente').val());
+  var query= $('#buscarpaciente').val();
+  var route = "buscarPaciente";
+  $.ajax({
+      url: route,
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+      type: 'POST',
+      dataType: 'json',
+      data:{pa_cedula: query},
+      success: function(msj){ 
+          var output=""; //'<div class="dropdown-menu"> ';       
+          var data=msj.data; 
+           $('#__lista_pacientes').empty();
+           var htm=     
+           $.each(data,function(key,value){                             
+             output += '<li onclick="CargarPacienteSecre('+value.pa_id+')" class="list-group-item list-group-item-action" >' + value.pa_nombres+" "+value.pa_apellidos + '</li>';
+           });
+           //output +='</div>';
+           console.log(output);             
+           $('#__lista_pacientes').append(output);
 
+      }
+ });
+}
+function CargarPacienteSecre(pa_id){    
+  var route= "obtenerPacienteSecre/"+pa_id;
+  
+  //$("#_su_ciudad").empty();
+  $.get(route,function(res){
+      console.log(res);      
+      $("#__consultasecre").html(res.consultas);  
+          
+      });
+      
+      
+}
+function CargarSecreConsulta(co_id){  
+ console.log(co_id); 
+ 
+  var route= "obtenerSecreConsulta/"+co_id;  
+  //$("#_su_ciudad").empty();
+  $.get(route,function(res){
+      console.log(res);      
+      $('#cosultaBody').html(res);   
+      });      
+      $('#verConsulta').modal('toggle');
+}
 
 function buscarPac(){
     //console.log($('#buscarpaciente').val());
@@ -68,8 +118,9 @@ function CargarPaciente(pa_id){
         $("#pa_antecedentesf").val(res.paciente.pa_antecedentesf);
         $("#pa_enfamiliares").val(res.paciente.pa_enfamiliares);
         $("#pa_enpersonales").val(res.paciente.pa_enpersonales);
-        $('#tablaprueba tbody').empty();               
-        $.each(res.consultas,function(key,value){ 
+        $("#__consultas").html(res.consultas);
+       // $('#tablaprueba tbody').empty();               
+        /*$.each(res.consultas,function(key,value){ 
             var htmlTags = "<tr data-id="+value.co_id+">"+
         '<td>' + value.co_fecha + '</td>'+        
         '<td>' + value.co_motivo + '</td>'+
@@ -80,7 +131,7 @@ function CargarPaciente(pa_id){
       '</tr>';
       
        $('#__tablaprueba tbody').append(htmlTags);
-        });    
+        });   */ 
             
         });
         
@@ -170,4 +221,14 @@ function generar(co_id){
   $('#generarCer').modal('toggle');
   
 
+}
+function verificarConsulta(co_id){
+  var route='verificarConsultas/'+co_id;
+  
+  console.log(co_id);
+
+ $.get(route,function(res){
+   console.log(res);
+   $('#__proximasConsultas').html(res);
+  });
 }

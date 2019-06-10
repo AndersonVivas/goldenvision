@@ -86,6 +86,7 @@ function EnviarLenteC(){
                 console.log(msj)
                 $("#mensajecontacto").text(msj.status);
                 $("#_lenteContacto").empty();
+                $("#le_contacto").val(" ");
                 $('#_lenteContacto').append("<option value='' onclick='LCinavilitar()'>--Seleccione--</option>");
                 $.each(msj.lentesContacto,function(key,value){     
                     $('#_lenteContacto').append("<option onclick='LCavilitar()' value="+value.cle_id+">"+value.cle_caracteristica+"</option>");
@@ -116,6 +117,7 @@ function EnviarLenteM(){
         success: function(msj){            
                 console.log(msj)
                 $("#mensajemarco").text(msj.status);
+                $("#le_marco").val(" "); 
                 $("#_lenteMarco").empty();
                 $('#_lenteMarco').append("<option value=''>--Seleccione--</option>");
                 $.each(msj.lentesMarco,function(key,value){     

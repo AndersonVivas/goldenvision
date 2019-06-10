@@ -90,16 +90,17 @@ class Gv_consultaController extends Controller
           }
        } else if( $cos_otros != null){
         $consulta->sintomas()->attach(14,['cos_otros'=>$cos_otros]);
-       }       
+       }      
         //caracteristicas corporales
        if(\Session::exists('ccorporales')){
         $ccorporales=\Session::get('ccorporales');
+        
         foreach($ccorporales as $ccorporal){ 
-            $consulta->caracteristicasCor()->attach($ccorporal->cc_id,['coc_observaion'=>$ccorporal->coc_observaion]);
+           $consulta->caracteristicasCor()->attach($ccorporal->cc_id,['coc_observaion'=>$ccorporal->coc_observaion]);
         }  
-                             
+        \Session::forget('ccorporales');                     
        }    
-         
+    
       if(\Session::exists('keratrometria')){
         $keratrometrias=\Session::get('keratrometria');
         foreach($keratrometrias as $keratrometria){ 
@@ -167,6 +168,10 @@ class Gv_consultaController extends Controller
         'mo_alturaod' => $request->ODalrx,
         'mo_alturaoi' => $request->OIalrx,
         'mo_aumentar' => $request->aumdisrx, 
+        'mo_avlodsncorr' => $request->ODavlsincorrrx,
+        'mo_avloisncorr' => $request->OIavlsincorrrx,
+        'mo_avcodsncorr' => $request->ODavcsincorrrx,
+        'mo_avcoisncorr' => $request->OIavcsincorrrx,
     ]);
     //Rentinoscopia
     $consulta->examenes()->attach(1,[
@@ -186,11 +191,15 @@ class Gv_consultaController extends Controller
         'mo_addoi' => $request->OIaddre,
         'mo_alturaod' => $request->ODalre,
         'mo_alturaoi' => $request->OIalre,
-        'mo_aumentar' => $request->aumdisre, 
+        'mo_aumentar' => $request->aumdisre,
+        'mo_avlodsncorr' => $request->ODavlsincorrre,
+        'mo_avloisncorr' => $request->OIavlsincorrre,
+        'mo_avcodsncorr' => $request->ODavcsincorrre,
+        'mo_avcoisncorr' => $request->OIavcsincorrre,
     ]);  
     
     $localidades=Gv_localidad::orderBy('lo_nombre', 'asc')->get();
-    return redirect()->route('consulta'); 
+    return redirect()->route('consulta');
     }
 
 
@@ -204,26 +213,24 @@ class Gv_consultaController extends Controller
             'cc_id'=>$request->cc_id,
             'coc_observaion'=>$request->coc_observaion
 
-        );        
+        );
+               
         if(\Session::exists('ccorporales')){      
-        $ccorporal=\Session::get('ccorporales');
+        $ccorporal=\Session::get('ccorporales');        
         foreach($ccorporal as $ccorpor){ 
            if($ccorpor->cc_id == $ccorporales->cc_id){
             return response()->json([
                 'status'=> 400,
-            ]);
-           }else{
-            \Session::push('ccorporales',$ccorporales); 
-           }
+            ]);           
         } 
             
-    }else{
-        \Session::push('ccorporales',$ccorporales);         
     }
+   }
+    \Session::push('ccorporales',$ccorporales); 
     return response()->json([
         'status'=> 200,
     ]);
-         
+      
 
     }
     public function AgregarKeratrometria(Request $request){
@@ -265,13 +272,11 @@ class Gv_consultaController extends Controller
             return response()->json([
                 'status'=> 400,
             ]);
-           }else{
-            \Session::push('keratrometria',$keratrometria); 
            }
         } 
-        }else{
-            \Session::push('keratrometria',$keratrometria); 
         }
+        \Session::push('keratrometria',$keratrometria); 
+        
 
         return response()->json([
             'status'=> 200,
@@ -283,14 +288,32 @@ class Gv_consultaController extends Controller
         return view('consulta.verConsulta')->with('consulta',$consulta);
     }
     public function obtenerSecreConsulta($co_id){
-        $consulta=Gv_consulta::find($co_id);  
-        return response()->json(view('secretaria.verConsulta')->with('consulta',$consulta)->render());
+        $lentesContacto=Gv_clente::where('le_id',1)
+        -> orderBy('cle_caracteristica', 'asc')->get();
+       $lentesMarco=Gv_clente::where('le_id',2)
+        -> orderBy('cle_caracteristica', 'asc')->get();  
+        $consulta=Gv_consulta::find($co_id); 
+        $lentemarc="";
+        $lentecontac="";
+        foreach ($consulta->lentes as $lente) {            
+
+            if($lente->le_id == 1){
+                $lentecontac=$lente->cle_id;
+             }
+
+            if($lente->le_id == 2){
+                $lentemarc=$lente->cle_id;
+             }
+            
+        }         
+        return response()->json(['vista'=>(view('secretaria.verConsulta')->with('consulta',$consulta)->with('lentesContacto',$lentesContacto)->with('lentesMarco',$lentesMarco)->render()),
+        'lentecontac'=>$lentecontac,'lentemar'=>$lentemarc]);
     }
     public function imprimirConsulta(Request $request){         
         $consulta=Gv_consulta::find($request->co_id); 
         $pdf = PDF::loadView('consulta.imprimirConsulta', ['consulta' => $consulta]);
         $pdf->setPaper('A4', 'portrait'); 
-        return $pdf->download();  
+        return $pdf->dowload();  
         
     }
     public function obtenerConCer($co_id){         
@@ -340,14 +363,14 @@ class Gv_consultaController extends Controller
         $consultas=Gv_consulta::where('us_cedula',$request->us_cedula)->where('co_fecha','>=',$request->inicio)->where('co_fecha','<=',$request->final)->orderBy('co_fecha','desc')->get();
         $pdf = PDF::loadView('consulta.reportesopof',['consultas'=>$consultas,'usuario'=>$usuario,'fecha_inicio'=>$request->inicio,'fecha_fin'=>$request->final]);
         $pdf->setPaper('A4', 'portrait');        
-       return  $pdf->download($request->us_cedula);
+       return  $pdf->download($request->us_cedula.'.pdf');
     }
     public function generarSucursal(Request $request){   
         $sucursal=Gv_sucursal::find($request->su_id);     
         $consultas=Gv_consulta::where('su_id',$request->su_id)->where('co_fecha','>=',$request->inicio)->where('co_fecha','<=',$request->final)->orderBy('co_fecha','desc')->get();
         $pdf = PDF::loadView('consulta.reportessucu',['consultas'=>$consultas,'sucursal'=>$sucursal,'fecha_inicio'=>$request->inicio,'fecha_fin'=>$request->final]);
         $pdf->setPaper('A4', 'portrait');        
-       return  $pdf->download($sucursal->su_ciudad);
+       return  $pdf->download($sucursal->su_ciudad.'.pdf');
     }
     public function proximasConsultas(Request $request){
         $sucursal=\Session::get('id_sucursal');
@@ -361,5 +384,33 @@ class Gv_consultaController extends Controller
         $sucursal=\Session::get('id_sucursal');
         $consultas=Gv_consulta::where('pc_fecha',$consulta->pc_fecha)->where('pc_verificado',0)->where('su_id',$sucursal)->orderBy('co_fecha','desc')->get();
         return response()->json(view('secretaria.listaProximas')->with('consultas',$consultas)->render());
+    }
+    public function generarPedido(Request $request){        
+        $consulta=Gv_consulta::find($request->co_id);       
+        foreach ($consulta->lentes as $lente) {            
+
+            if($lente->le_id == 1){
+                $lentecontac=$lente->cle_id;
+             }
+
+            if($lente->le_id == 2){
+                $lentemarc=$lente->cle_id;
+             }
+            
+        }      
+        if($request->_lenteContacto <> null){
+            $consulta->lentes()->detach($lentecontac);
+            $consulta->lentes()->attach($request->_lenteContacto);             
+          }
+           if($request->_lenteMarco <> null){
+            $consulta->lentes()->detach( $lentemarc);
+            $consulta->lentes()->attach($request->_lenteMarco);   
+           }
+        $consulta2=Gv_consulta::find($request->co_id); 
+        $pdf = PDF::loadView('consulta.generarPedido', ['consulta' => $consulta2]);
+        $pdf->setPaper('A4', 'portrait'); 
+        return $pdf->stream();  
+           
+           
     }
 }

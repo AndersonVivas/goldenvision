@@ -36,8 +36,10 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th><small><strong>AV/L</strong></small></th>
-                            <th><small><strong>AV/C</strong></small></th>                            
+                            <th><small><strong>AV/L sin corrección</strong></small></th>
+                            <th><small><strong>AV/C sin corrección</strong></small></th> 
+                            <th><small><strong>AV/L con corrección</strong></small></th>
+                            <th><small><strong>AV/C con corrección</strong></small></th>                            
                         </tr>                        
                     </thead>                  
                 </table> 
@@ -97,8 +99,8 @@ EL PACIENTE PUEDE REALIZAR TODAS LA ACTIVIDADES.
                       <input id="medico" name="medico" class="form-control" type="text">
                   </div>
                   <div class="col-md-11 " style="text-align:end; margin-top: 30px">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                      <button type="submit" class="btn btn-primary"><ion-icon name="print"></ion-icon>
+                      <button type="button" class="btn btn-md" style="background: #9aa0a6;color: white;" data-dismiss="modal">Cerrar</button>
+                      <button type="submit" class="btn btn-md" style="background: #2E519f;color: white"><ion-icon name="print"></ion-icon>
                           Generar Certificado
                       </button>
                   </div>

@@ -16,7 +16,7 @@
             <td>{{ $consulta->co_motivo }}</td>
             <td>{{ $consulta->usuario->us_apellidos }} {{ $consulta->usuario->us_nombres }}</td>
             <td>{{ $consulta->sucursal->su_ciudad  }} </td>
-            <td><button onclick="CargarSecreConsulta( {{ $consulta->co_id }})" class='btn btn-sm' style="background: #2E519f;color:white"><ion-icon name='eye'/>Ver</button>
+            <td><a onclick="CargarSecreConsulta( {{ $consulta->co_id }})" class='btn btn-sm' style="background: #2E519f;color:white"><ion-icon name='eye'/>Ver</a>
             </tr>                
             @endforeach         
         </tbody>

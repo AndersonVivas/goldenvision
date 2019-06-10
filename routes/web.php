@@ -34,6 +34,9 @@ Route::group(['middleware'=>'adofop'],function(){
     Route::post('guardarmedidas', 'Gv_consultaController@guardar')->name('guardarmedidas');
     Route::post('agregarkeratrometria', 'Gv_consultaController@AgregarKeratrometria')->name('agregarkeratrometria');
     Route::post('tureporte','Gv_consultaController@generarTuReporte');
+    Route::get('reportesop', function(){
+        return view('opt.reportes');
+    });
 });
 Route::group(['middleware'=>'adofopse'],function(){
     Route::get('obtenerPaciente/{pa_id}','Gv_pacienteController@obtenerPaciente');
@@ -51,6 +54,7 @@ Route::group(['middleware'=>'adofopse'],function(){
     });
     Route::post('/agregarSucursal','Gv_selectsController@guardarSucursal')->name('/agregarSucursal');
     Route::get('listarSucursal','Gv_selectsController@obtenerSucursal')->name('listarSucursal');
+    Route::post('generarPedido','Gv_consultaController@generarPedido');
 });
 Route::group(['middleware'=>'admin'],function(){
     Route::post('usuario','Gv_usuarioController@store')->name('usuario');

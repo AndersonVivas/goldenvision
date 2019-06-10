@@ -55,6 +55,9 @@ class Gv_consulta extends Model
         'mo_addod','mo_addoi',
         'mo_alturaod','mo_alturaoi',
         'mo_aumentar',
+        'mo_avlodsncorr','mo_avloisncorr',
+        'mo_avcodsncorr','mo_avcoisncorr',
+        
     );
     }
 }

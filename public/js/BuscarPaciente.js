@@ -48,7 +48,9 @@ function CargarSecreConsulta(co_id){
   //$("#_su_ciudad").empty();
   $.get(route,function(res){
       console.log(res);      
-      $('#cosultaBody').html(res);   
+      $('#cosultaBody').html(res.vista);  
+      $('select#_lenteContacto').val(res.lentecontac);
+      $('select#_lenteMarco').val(res.lentemar);
       });      
       $('#verConsulta').modal('toggle');
 }
@@ -169,20 +171,28 @@ function generar(co_id){
           var htmlTags= '<thead>'+
           '<tr>'+
               '<th></th>'+
-             ' <th><small><strong>AV/L</strong></small></th>'+
-              '<th><small><strong>AV/C</strong></small></th>'+                            
+             ' <th><small><strong>AV/L sin corrección</strong></small></th>'+
+              '<th><small><strong>AV/C sin corrección</strong></small></th>'+ 
+              '<th><small><strong>AV/L con corrección</strong></small></th>'+ 
+              '<th><small><strong>AV/C con corrección</strong></small></th>'+                            
          ' </tr>  '+                      
         '</thead> '+
-          '<tbody><tr>'+
-          '<td><small><strong>OD</strong></small></td>'+
-          '<td><small>'+value.pivot.mo_avlod+'</small></td>'+
-          '<td><small></strong>'+value.pivot.mo_avcod+'</small></td>'+
-          '</tr>'+
-          '<tr>'+
-          '<td><small><strong>OI</strong></small></td>'+
-           '<td><small>'+value.pivot.mo_avloi+'</small></td>'+
-          '<td><small></strong>'+value.pivot.mo_avcoi+'</small></td></tr>'+
-          '</tr></tbody>'+
+          '<tbody>'+
+          ' <tr>'+
+          '<td><small><strong>OD</strong></small></td>'+  
+          '<td><small>'+ value.pivot.mo_avlodsncorr+' </small></td>'+
+          '<td><small>'+value.pivot.mo_avcodsncorr  +'</small> </td>'+
+          '<td><small>'+value.pivot.mo_avlod+'</small> </td>'+
+          '<td><small>'+value.pivot.mo_avcod+'</small> </td>'+
+      '</tr>'+
+      '<tr>'+
+              '<td><small><strong>OI</strong></small></td>'+
+              '<td><small>'+value.pivot.mo_avloisncorr+' </small></td>'+
+              '<td><small>'+value.pivot.mo_avcoisncorr +'</small> </td>'+
+             ' <td><small>'+value.pivot.mo_avloi +'</small> </td>'+
+              '<td><small>'+value.pivot.mo_avcoi +'</small> </td>'+
+        '</tr>'         
+          +'</tbody>'+
           '<thead>'+
             '<tr>'+
                 '<th><small><strong>RX TOTAL</strong></small></th>'+

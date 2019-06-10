@@ -9,7 +9,7 @@ class Gv_paciente extends Model
     protected $table = 'gv_pacientes';
     public $timestamps = false;
     protected $primaryKey='pa_id'; 
-    public function rol()
+    public function localidad()
     {
         return $this->belongsTo('GoldenVision\Gv_localidad', 'lo_id');
     }

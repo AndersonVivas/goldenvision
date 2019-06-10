@@ -183,4 +183,26 @@ function LCavilitar(){
  }
     
 }
+function copiarRetinoscopia(){
+    $('#ODavlsincorrrx').val($('#ODavlsincorrre').val());
+    $('#OIavlsincorrrx').val($('#OIavlsincorrre').val());
+    $('#ODavcsincorrrx').val($('#ODavcsincorrre').val());
+    $('#OIavcsincorrrx').val($('#OIavcsincorrre').val());
+    $('#ODesrx').val($('#ODesre').val());
+    $('#OIesrx').val($('#OIesre').val());
+    $('#ODcirx').val($('#ODcire').val());
+    $('#OIcirx').val($('#OIcire').val());
+    $('#ODejrx').val($('#ODejre').val());
+    $('#OIejrx').val($('#OIejre').val());
+    $('#ODdnprx').val($('#ODdnpre').val());
+    $('#OIdnprx').val($('#OIdnpre').val());
+    $('#ODaddrx').val($('#ODaddre').val());
+    $('#OIaddrx').val($('#OIaddre').val());
+    $('#ODalrx').val($('#ODalre').val());
+    $('#OIalrx').val($('#OIalre').val());
+    $('#ODavlrx').val($('#ODavlre').val());
+    $('#OIavlrx').val($('#OIavlre').val());
+    $('#ODavcrx').val($('#ODavcre').val());
+    $('#OIavcrx').val($('#OIavcre').val());
+}
 

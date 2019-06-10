@@ -1,5 +1,5 @@
 @extends('layouts.app2')
-@section('title','Administrador') 
+@section('title','OPT/OFT') 
 @section('content' )
 <div class="container" style="height:100%">
     <div class="row justify-content-md-center" style="height:100%" >
@@ -23,7 +23,7 @@
               <div class="view view-cascade overlay"> 
                     <ion-icon name="copy" aria-hidden="true" style="font-size: 200px;color: #b49b3e;opacity: 0.8"></ion-icon>        
                  <!--<img src="images/reportes.png" class="card-img-top" style="animation: down-ani 20s linear infinete"/> -->                  
-                <a href="consulta">
+                <a href="reportesop">
                     <div class="mask rgba-white-slight"></div>
               </a>
               </div>

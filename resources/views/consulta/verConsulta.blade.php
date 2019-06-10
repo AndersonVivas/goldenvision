@@ -8,7 +8,7 @@
         <div class="card">
             
             <div class="card-body">
-                    <h6 class="card-title"><strong><ion-icon name="information-circle-outline"></ion-icon>Información General de Consulta</strong></h6>
+                    <h6 class="card-title"><strong  style="color:#2E519f"><ion-icon name="information-circle-outline" style="color:#b49b3e;font-size: 15px"></ion-icon> Información General de Consulta</strong></h6>
                 <div class="row">               
                       <div class="col-md-4">
                             <small>Paciente:</small>
@@ -37,12 +37,36 @@
                                 <small>{{ $consulta->co_fecha }}</small>
                             </div>   
                     </div>
+                    <div class="row">
+                        <div class="col-6">
+                                <small>Motivo de consulta:</small>
+                                <small> {{ $consulta->co_motivo }} </small>
+                          
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                            <div class="col-6">
+                                    <small>Anamnesis:</small>
+                                    <small> {{ $consulta->co_anamnesis }} </small>
+                              
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                                <div class="col-6">
+                                        <small>Ishihara:</small>
+                                        <small> {{ $consulta->co_ishihara }} </small>
+                                  
+                                </div>
+                                
+                            </div>
             </div>            
         </div>
         
         <div class="card" style="margin-top: 10px">
                 <div class="card-body">
-                    <h6 class="card-title"><strong><ion-icon name="bed"></ion-icon>Enfermedades</strong></h6>
+                    <h6 class="card-title"><strong style="color:#2E519f"><ion-icon name="bed" style="color:#b49b3e;font-size: 15px"></ion-icon> Enfermedades</strong></h6>
                     <div class="row">               
                           <div class="col-md-12">
                                 <small>Antecedentes Familiares:</small>
@@ -62,9 +86,9 @@
             </div>
     </div>  
     <div class="col-md-2">
-            <a type="submit" href="medidasNuevas?id_pa={{ $consulta->pa_id }}" class="btn btn-primary btn-sm" style="width:183px" ><ion-icon name="clipboard" style="size: 20px"></ion-icon>Agregar Consulta</a>
-           <button class='btn btn btn-success btn-sm' onclick='generar({{ $consulta->co_id }})' style="width:183px"><ion-icon name='print' ></ion-icon>Generar Certificado</button> 
-           <a type="submit" href="imprimirConsulta?co_id={{ $consulta->co_id }}" class="btn btn-info btn-sm" style="width:183px"><ion-icon name="clipboard" ></ion-icon>Imprimir esta Consulta</a>         
+            <a href="medidasNuevas?id_pa={{ $consulta->pa_id }}" class="btn btn-sm" style="width:183px;background: #2E519f;color: white" ><ion-icon name="clipboard" style="font-size: 15px"></ion-icon> Agregar Consulta</a>
+           <button class='btn btn-sm' onclick='generar({{ $consulta->co_id }})' style="width:183px;background: #9aa0a6;color: white;"><ion-icon name='print' style="font-size: 15px" ></ion-icon> Generar Certificado</button> 
+           <a  href="imprimirConsulta?co_id={{ $consulta->co_id }}" class="btn btn-sm" style="width:183px;background: #b49b3e;color:white"><ion-icon name="clipboard" style="font-size: 15px" ></ion-icon> Imprimir esta Consulta</a>         
          </div>  
     </div> 
         
@@ -73,7 +97,7 @@
     <div class="col-md-4" style="margin-bottom: 10px">            
         <div class="card">            
             <div class="card-body">
-                    <h6 class="card-title"><strong><ion-icon name="body"></ion-icon>Sintomas Presentados</strong></h6>
+                    <h6 class="card-title"><strong style="color:#2E519f"><ion-icon name="body" style="color:#b49b3e;font-size: 15px"></ion-icon> Sintomas Presentados</strong></h6>
                 <table id="sintomas" class="table table-sm">            
                     <tbody>
                         @foreach ($consulta->sintomas as $sintoma)
@@ -85,7 +109,7 @@
         </div>
         <div class="card" style="margin-top: 10px">
               <div class="card-body">
-                    <h6 class="card-title"><strong><ion-icon name="walk"></ion-icon>Observaciones Corporales</strong></h6>
+                    <h6 class="card-title"><strong style="color:#2E519f"><ion-icon name="walk" style="color:#b49b3e;font-size: 15px"></ion-icon> Observaciones Corporales</strong></h6>
                 <table class="table table-sm">
                     <thead>
                         <tr>
@@ -104,7 +128,7 @@
         </div>
             <div class="card" style="margin-top: 10px">
                      <div class="card-body">
-                        <h6 class="card-title"><strong><ion-icon name="glasses"></ion-icon>Lentes en Uso</strong></h6>
+                        <h6 class="card-title"><strong style="color:#2E519f"><ion-icon name="glasses" style="color:#b49b3e;font-size: 15px"></ion-icon> Lentes en Uso</strong></h6>
                         @foreach ($consulta->lentes as $lente)
                         <label>Lentes de {{ $lente->lente->le_tipo }}:  {{ $lente->cle_caracteristica }}</label> 
                                             
@@ -122,7 +146,7 @@
                 <div class="row" style="margin-bottom: 10px" >
                     <div class="card"> 
                         <div class="card-body"> 
-                                <h6 class="card-title"><strong><ion-icon name="glasses"></ion-icon>{{ $examen->te_examen }}</strong></h6>                      
+                                <h6 class="card-title"><strong style="color:#2E519f"><ion-icon name="glasses" style="color:#b49b3e;font-size: 15px"></ion-icon> {{ $examen->te_examen }}</strong></h6>                      
                             <div class="row">    
                                 <div class="col-md-2">
                                     <small for="ODesru">ESF:</small> 
@@ -161,94 +185,118 @@
                 <div class="row" style="margin-bottom: 10px" >
                     <div class="card">                        
                             <div class="card-body"> 
-                                    <h6 class="card-title"><strong><ion-icon name="eye"></ion-icon>{{ $examen->te_examen }}</strong></h6>
-                           <div class="row">    
-                                    <div class="col-md-2">
-                                        <small for="ODesru">ESF:</small> 
-                                        <div class="form-group">
-                                            <small for="ODesre">OD:</small>
-                                            <input id="ODesre" name="ODesre" value='{{ $examen->pivot->mo_esfod }}' class="form-control form-control-sm" type="text" disabled>                                    
-                                            <small for="OIesre">OI:</small>
-                                            <input id="OIesre" name="OIesre" value='{{ $examen->pivot->mo_esfoi }}' class="form-control form-control-sm" type="text" disabled>
-                                        </div>              
-                                    </div> 
-                                    <div class="col-md-2">
-                                        <small for="ODesru">CILINDRO:</small>  
-                                        <div class="form-group">
-                                            <small for="ODcire">OD:</small>
-                                            <input id="ODcire" name="ODcire" value='{{ $examen->pivot->mo_ciod }}' class="form-control form-control-sm" type="text" disabled>
-                                                <small for="OIcire">OI:</small>
-                                                <input id="OIcire" name="OIcire" value='{{ $examen->pivot->mo_cioi }}' class="form-control form-control-sm" type="text" disabled>                                                      
+                                    <h6 class="card-title"><strong style="color:#2E519f"><ion-icon name="eye" style="color:#b49b3e;font-size: 15px"></ion-icon> {{ $examen->te_examen }}</strong></h6>
+                                    <div class="row">  
+                                            <div class="col-md-3 col-lg-2 col-xl-2 col-sm-4">
+                                                    <small>AV/L sin corrección:</small>
+                                                    <div class="form-group">
+                                                        <small for="ODavlsincorrrx">OD:</small>
+                                                        <input id="ODavlsincorrrx" tabindex="3" value='{{ $examen->pivot->mo_avlodsncorr }}' name="ODavlsincorrrx" class="form-control form-control-sm" type="text" disabled>                                    
+                                                        <small for="OIavlsincorrrx">OI:</small>
+                                                        <input id="OIavlsincorrrx" tabindex="4" value='{{ $examen->pivot->mo_avloisncorr }}' name="OIavlsincorrrx" class="form-control form-control-sm" type="text" disabled>                                                     
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-lg-2 col-xl-2 col-sm-4">
+                                                    <small>AV/C sin corrección:</small>
+                                                    <div class="form-group"> 
+                                                        <small for="ODavcsincorrrx">OD:</small>
+                                                        <input id="ODavcsincorrrx" tabindex="3" value='{{ $examen->pivot->mo_avcodsncorr }}' name="ODavcsincorrrx" class="form-control form-control-sm" type="text" disabled>                                    
+                                                        <small for="OIavcsincorrrx">OI:</small>
+                                                        <input id="OIavcsincorrrx" tabindex="4" value='{{ $examen->pivot->mo_avcoisncorr }}' name="OIavcsincorrrx" class="form-control form-control-sm" type="text" disabled>                                                     
+                                                    </div>
+                                               </div>  
+                                        <div class="col-md-3 col-lg-2 col-xl-2 col-sm-4">
+                                            <small for="ODesru">ESF:</small> 
+                                            <div class="form-group">
+                                                <small for="ODesrx">OD:</small>
+                                                <input id="ODesrx" name="ODesrx" value='{{ $examen->pivot->mo_esfod }}'  tabindex="3" class="form-control form-control-sm" type="text" disabled>                                    
+                                                <small for="OIesrx">OI:</small>
+                                                <input id="OIesrx" name="OIesrx" value='{{ $examen->pivot->mo_esfoi }}' tabindex="4" class="form-control form-control-sm" type="text" disabled>
+                                            </div>              
+                                        </div> 
+                                        <div class="col-md-3 col-lg-2 col-xl-2 col-sm-4">
+                                            <small for="ODesru">CILINDRO:</small>  
+                                            <div class="form-group">
+                                                <small for="ODcirx">OD:</small>
+                                                <input id="ODcirx" name="ODcirx" tabindex="3" value='{{ $examen->pivot->mo_ciod }}' class="form-control form-control-sm" type="text" disabled>
+                                                <small for="OIcirx">OI:</small>
+                                                <input id="OIcirx" name="OIcirx" tabindex="4" value='{{ $examen->pivot->mo_cioi }}' class="form-control form-control-sm" type="text" disabled>                                                      
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <small>EJE:</small>
-                                        <div class="form-group"> 
-                                            <small for="ODejre">OD:</small>
-                                            <input id="ODejre" name="ODejre" value='{{ $examen->pivot->mo_ejod }}' class="form-control form-control-sm" type="text" disabled>                                    
-                                            <small for="OIejre">OI:</small>
-                                            <input id="OIejre" name="OIejre" value='{{ $examen->pivot->mo_ejoi }}' class="form-control form-control-sm" type="text" disabled>                                                     
+                                        <div class="col-md-3 col-lg-2 col-xl-2 col-sm-4">
+                                            <small>EJE:</small>
+                                                <div class="form-group"> 
+                                                    <small for="ODejrx">OD:</small>
+                                                    <input id="ODejrx" name="ODejrx" tabindex="3" value='{{ $examen->pivot->mo_ejod }}' class="form-control form-control-sm" type="text" disabled>                                    
+                                                    <small for="OIejrx">OI:</small>
+                                                    <input id="OIejrx" name="OIejrx" tabindex="4" value='{{ $examen->pivot->mo_ejoi }}' class="form-control form-control-sm" type="text" disabled>                                                     
+                                                </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <small>DNP:</small>
-                                        <div class="form-group"> 
-                                            <small for="ODdnpre">OD:</small>
-                                            <input id="ODdnpre" name="ODdnpre" value='{{ $examen->pivot->mo_dnpod }}' class="form-control form-control-sm" type="text" disabled>                                    
-                                            <small for="OIdnpre">OI:</small>
-                                            <input id="OIdnpre" name="OIdnpre" value='{{ $examen->pivot->mo_dnpoi }}' class="form-control form-control-sm" type="text" disabled>                                                     
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <small>ADD:</small>
-                                        <div class="form-group"> 
-                                            <small for="ODaddre">OD:</small>
-                                            <input id="ODaddre" name="ODaddre" value='{{ $examen->pivot->mo_addod }}' class="form-control form-control-sm" type="text" disabled>                                    
-                                            <small for="OIaddre">OI:</small>
-                                            <input id="OIaddre" name="OIaddre" value='{{ $examen->pivot->mo_addoi }}' class="form-control form-control-sm" type="text" disabled>                                                     
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <small>ALTURA:</small>
-                                        <div class="form-group"> 
-                                            <small for="ODalre">OD:</small>
-                                            <input id="ODalre" name="ODalre" value='{{ $examen->pivot->mo_alturaod }}' class="form-control form-control-sm" type="text" disabled>                                    
-                                            <small for="OIalre">OI:</small>
-                                            <input id="OIalre" name="OIalre" value='{{ $examen->pivot->mo_alturaoi }}' class="form-control form-control-sm" type="text" disabled>                                                     
-                                        </div>
-                                    </div>                                                                                     
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <small>AV/L:</small>
-                                        <div class="form-group">
-                                            <small for="ODavlre">OD:</small>
-                                            <input id="ODavlre" name="ODavlre" value='{{ $examen->pivot->mo_avlod }}' class="form-control form-control-sm" type="text" disabled>                                    
-                                            <small for="OIavlre">OI:</small>
-                                            <input id="OIavlre" name="OIavlre" value='{{ $examen->pivot->mo_avloi }}' class="form-control form-control-sm" type="text" disabled>                                                     
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 ">
-                                        <small>AV/C:</small>
-                                        <div class="form-group"> 
-                                            <small for="ODavcre">OD:</small>
-                                            <input id="ODavcre" name="ODavcre" value='{{ $examen->pivot->mo_avcod }}' class="form-control form-control-sm" type="text" disabled>                                    
-                                            <small for="OIavcre">OI:</small>
-                                            <input id="OIavcre" name="OIavcre" value='{{ $examen->pivot->mo_avcoi }}' class="form-control form-control-sm" type="text" disabled>                                                     
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">                                                
-                                        @if ( $examen->pivot->mo_aumentar==0 )
-                                            <label class="form-check-label" for="disminuir">
-                                                Disminuir
-                                            </label>
-                                        @else
-                                            <label class="form-check-label" for="disminuir">
-                                                Aumentar
-                                            </label>        
-                                        @endif                                                     
-                                    </div>                        
-                                </div>
+                                        <div class="col-md-3 col-lg-2 col-xl-2 col-sm-4">
+                                                <small>DNP:</small>
+                                                    <div class="form-group"> 
+                                                        <small for="ODdnprx">OD:</small>
+                                                        <input id="ODdnprx" name="ODdnprx" tabindex="3" value='{{ $examen->pivot->mo_dnpod }}' class="form-control form-control-sm" type="text" disabled>                                    
+                                                        <small for="OIdnprx">OI:</small>
+                                                        <input id="OIdnprx" name="OIdnprx" tabindex="4" value='{{ $examen->pivot->mo_dnpoi }}' class="form-control form-control-sm" type="text" disabled>                                                     
+                                                    </div>
+                                            </div>
+                                           
+                                                                                     
+                                    
+                                    
+                                            <div class="col-md-3 col-lg-2 col-xl-2 col-sm-4">
+                                                    <small>ADD:</small>
+                                                        <div class="form-group"> 
+                                                            <small for="ODaddrx">OD:</small>
+                                                            <input id="ODaddrx" name="ODaddrx" value='{{ $examen->pivot->mo_addod }}' tabindex="3" class="form-control form-control-sm" type="text" disabled>                                    
+                                                            <small for="OIaddrx">OI:</small>
+                                                            <input id="OIaddrx" name="OIaddrx" value='{{ $examen->pivot->mo_addoi }}' tabindex="4"  class="form-control form-control-sm" type="text" disabled>                                                     
+                                                        </div>
+                                                </div>
+                                                <div class="col-md-3 col-lg-2 col-xl-2 col-sm-4">
+                                                        <small>ALTURA:</small>
+                                                            <div class="form-group"> 
+                                                                <small for="ODalrx">OD:</small>
+                                                                <input id="ODalrx" name="ODalrx" value='{{ $examen->pivot->mo_alturaod }}' tabindex="3" class="form-control form-control-sm" type="text" disabled>                                    
+                                                                <small for="OIalrx">OI:</small>
+                                                                <input id="OIalrx" name="OIalrx" value='{{ $examen->pivot->mo_alturaoi }}' tabindex="4" class="form-control form-control-sm" type="text" disabled>                                                     
+                                                            </div>
+                                                    </div>
+                                            <div class="col-md-3 col-lg-2 col-xl-2 col-sm-4">
+                                                    <small>AV/L con corrección</small>
+                                                    <div class="form-group">
+                                                        <small for="ODavlrx">OD:</small>
+                                                        <input id="ODavlrx" name="ODavlrx" value='{{ $examen->pivot->mo_avlod }}' tabindex="3" class="form-control form-control-sm" type="text" disabled>                                    
+                                                        <small for="OIavlrx">OI:</small>
+                                                        <input id="OIavlrx" name="OIavlrx" value='{{ $examen->pivot->mo_avloi }}' tabindex="4" class="form-control form-control-sm" type="text" disabled>                                                     
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-lg-2 col-xl-2 col-sm-4">
+                                                    <small>AV/C con corrección</small>
+                                                    <div class="form-group"> 
+                                                        <small for="ODavcrx">OD:</small>
+                                                        <input id="ODavcrx" name="ODavcrx" value='{{ $examen->pivot->mo_avcod }}' tabindex="3" class="form-control form-control-sm" type="text" disabled>                                    
+                                                        <small for="OIavcrx">OI:</small>
+                                                        <input id="OIavcrx" name="OIavcrx" value='{{ $examen->pivot->mo_avcoi }}' tabindex="4" class="form-control form-control-sm" type="text" disabled>                                                     
+                                                    </div>
+                                               </div>
+                                               <div class="col-md-3 col-lg-2 col-xl-2 col-sm-4">
+                                                    @if ( $examen->pivot->mo_aumentar==0 )
+                                                    <label class="form-check-label" for="disminuir">
+                                                        Disminuir
+                                                    </label>
+                                                @else
+                                                    <label class="form-check-label" for="disminuir">
+                                                        Aumentar
+                                                    </label>        
+                                                @endif 
+                                               </div>
+                                            </div>
+
+                           
+                                    
+                                
                             </div>
                         </div> 
                         
@@ -396,6 +444,18 @@
     </div>                                             
     </div>
 </div>
+<div class="row">
+    <div class="col-12">
+            <small for="cedula">Observaciones:</small>
+            <small>{{ $consulta->co_observaciones }}</small>
+    </div>
+</div>
+<div class="row">
+        <div class="col-12">
+                <small for="cedula">Recomendaciones:</small>
+                <small>{{ $consulta->co_recomendaciones }}</small>
+        </div>
+    </div>
 </div>
 @include('consulta.generarCertificado') 
 <script type="text/javascript" src="js/BuscarPaciente.js"></script>

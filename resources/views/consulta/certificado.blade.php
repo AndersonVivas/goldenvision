@@ -12,12 +12,12 @@
         
     </div>
     <div class="row"  >
-        <div class="col-12" style="text-align:right;margin-top: 30px;margin-right: 30px;margin-left: 30px">
+        <div class="col-12" style="text-align:right;margin-top: 80px;margin-right: 30px;margin-left: 30px">
                 <small><strong >{{  $fechaCer }}</strong></small>
         </div>
     </div>
     <div class="row">
-        <div class="col-12" style="margin-top: 50px;margin-left: 30px;margin-right: 30px">
+        <div class="col-12" style="margin-top: 70px;margin-left: 30px;margin-right: 30px">
             <p style="text-align: justify"><small>{{ $descripcion }}</small> </p>
         </div>
     </div>
@@ -39,19 +39,25 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th><small><strong>AV/L</strong></small></th>
-                            <th><small><strong>AV/C</strong></small></th>                            
+                            <th><small><strong>AV/L sin RX</strong></small></th>
+                            <th><small><strong>AV/C sin RX</strong></small></th> 
+                            <th><small><strong>AV/L con RX</strong></small></th>
+                            <th><small><strong>AV/C con RX</strong></small></th>                              
                         </tr>
                     </thead>
                         <tbody>
                             <tr>
                                 <td><small><strong>OD</strong></small></td>
-                                <td><small>{{ $examen->pivot->mo_avlod }}</small></td>
-                                <td><small>{{ $examen->pivot->mo_avcod }}</strong></small> </td>
+                                <td><small>{{ $examen->pivot->mo_avlodsncorr }}</small></td>
+                                <td><small>{{ $examen->pivot->mo_avcodsncorr }}</small> </td>
+                                <td><small>{{ $examen->pivot->mo_avcod }}</small> </td>
+                                <td><small>{{ $examen->pivot->mo_avcod }}</small> </td>
                             </tr>
                             <tr>
                                     <td><small><strong>OI</strong></small></td>
-                                    <td><small>{{ $examen->pivot->mo_avloi }}</small></td>
+                                    <td><small>{{ $examen->pivot->mo_avloisncorr }}</small></td>
+                                    <td><small>{{ $examen->pivot->mo_avcoisncorr }}</small> </td>
+                                    <td><small>{{ $examen->pivot->mo_avcoi }}</small> </td>
                                     <td><small>{{ $examen->pivot->mo_avcoi }}</small> </td>
                             </tr>
                         </tbody>

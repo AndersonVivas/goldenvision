@@ -302,8 +302,8 @@ USUARIOS
                 </div>     
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">
+          <button type="button" class="btn btn-md" data-dismiss="modal" style="background: #9aa0a6;color: white;">Cerrar</button>
+          <button type="submit" class="btn btn-md" style="background: #2E519f;color: white">
               Guardar
           </button>
         </div>
@@ -410,8 +410,8 @@ USUARIOS
                   </div>     
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">
+            <button type="button" class="btn btn-md" style="background: #9aa0a6;color: white;"  data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-md" style="background: #2E519f;color: white">
                 Guardar
             </button>
           </div>
